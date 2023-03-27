@@ -1,0 +1,91 @@
+{
+  "project_info": {
+    "project_number": "198750788807",
+    "firebase_url": "https://my-first-firebase-projec-3e704-default-rtdb.firebaseio.com",
+    "project_id": "my-first-firebase-projec-3e704",
+    "storage_bucket": "my-first-firebase-projec-3e704.appspot.com"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:198750788807:android:196ef3430e6885e15ef2e2",
+        "android_client_info": {
+          "package_name": "com.fdemo"
+        }
+      },
+      "oauth_client": [
+        {
+          "client_id": "198750788807-kejnhqfo2ua375d3e9q3ois0uq1sajla.apps.googleusercontent.com",
+          "client_type": 3
+        }
+      ],
+      "api_key": [
+        {
+          "current_key": "AIzaSyBXYqXKxh-oJRuGYocBWoCGJdAJ9d4Cx4U"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": [
+            {
+              "client_id": "198750788807-f4ju5pvjn087it196g0dvmi10u9q21nr.apps.googleusercontent.com",
+              "client_type": 3
+            },
+            {
+              "client_id": "198750788807-62rc3bd6h6ka49l6dnnhkok0a50nod8j.apps.googleusercontent.com",
+              "client_type": 2,
+              "ios_info": {
+                "bundle_id": "org.reactjs.native.example.FireBaseDemo"
+              }
+            }
+          ]
+        }
+      }
+    },
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:198750788807:android:2f0dee0c18925e3e5ef2e2",
+        "android_client_info": {
+          "package_name": "com.firebasedemo"
+        }
+      },
+      "oauth_client": [
+        {
+          "client_id": "198750788807-2gjefelur2ga981thgjj9aloak1d036g.apps.googleusercontent.com",
+          "client_type": 1,
+          "android_info": {
+            "package_name": "com.firebasedemo",
+            "certificate_hash": "e9a6fd5fd032764086c8c42c28b9d4ce973d930c"
+          }
+        },
+        {
+          "client_id": "198750788807-kejnhqfo2ua375d3e9q3ois0uq1sajla.apps.googleusercontent.com",
+          "client_type": 3
+        }
+      ],
+      "api_key": [
+        {
+          "current_key": "AIzaSyBXYqXKxh-oJRuGYocBWoCGJdAJ9d4Cx4U"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": [
+            {
+              "client_id": "198750788807-f4ju5pvjn087it196g0dvmi10u9q21nr.apps.googleusercontent.com",
+              "client_type": 3
+            },
+            {
+              "client_id": "198750788807-62rc3bd6h6ka49l6dnnhkok0a50nod8j.apps.googleusercontent.com",
+              "client_type": 2,
+              "ios_info": {
+                "bundle_id": "org.reactjs.native.example.FireBaseDemo"
+              }
+            }
+          ]
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}
