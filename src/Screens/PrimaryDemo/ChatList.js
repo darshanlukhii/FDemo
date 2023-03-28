@@ -36,7 +36,6 @@ const ChatList = ({navigation}) => {
             });
           });
         });
-      console.log('Data =======>>>', data);
     } catch (error) {
       console.log(error);
     }
