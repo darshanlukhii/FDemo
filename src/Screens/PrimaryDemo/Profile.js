@@ -235,8 +235,6 @@ const Profile = ({navigation}) => {
     }
   };
 
-  // console.log(abc);
-
   return (
     <View style={styles.container}>
       <Header
@@ -452,6 +450,7 @@ const Profile = ({navigation}) => {
             data={followingData}
             bounces={false}
             renderItem={({item}) => {
+              setAbc(item?.Following);
               return item.Followers ? (
                 <View style={styles.userListView}>
                   <Image
@@ -514,10 +513,9 @@ const Profile = ({navigation}) => {
               // console.log('---------------------------->>>>> ', item);
               let visibility;
               if (item?.Followers) {
-                // visibility = item?.Followers.some(i => i === item?.);
+                // visibility = item?.Followers?.filter(a => {});
               }
-              setAbc(item);
-              // console.log('-------', visibility);
+              // console.log('-------', abc);
               return item.Followers ? (
                 <View style={styles.userListView}>
                   <Image
