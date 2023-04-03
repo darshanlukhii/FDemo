@@ -21,6 +21,7 @@ import {getUserData} from '../../Component/GetData';
 import ReactNativeModal from 'react-native-modal';
 import ProfileComponent from '../../Component/ProfileComponent';
 import {imageConstatnt} from '../../helper/imageConstatnt';
+import messaging from '@react-native-firebase/messaging';
 
 const Profile = ({navigation}) => {
   const [userOldData, setUserOldData] = useState([]);
@@ -28,7 +29,7 @@ const Profile = ({navigation}) => {
   const [data2, setData2] = useState([]);
   const [followingData, setFollowingData] = useState([]);
   const [followersData, setFollowersData] = useState([]);
-  const [abc, setAbc] = useState({});
+  // const [abc, setAbc] = useState([]);
   const [imageData, setImageData] = useState('');
   const [imgDownloadUrl, setImgDownloadUrl] = useState('');
   const [name, setName] = useState('');
@@ -46,9 +47,42 @@ const Profile = ({navigation}) => {
       getData();
       getUserAllData();
       Data();
+      // getFCMToken();
+      // messaging().onMessage(async remoteMessage => {
+      //   console.log(
+      //     'A new FCM message arrived!',
+      //     JSON.stringify(remoteMessage),
+      //   );
+      // });
+
+      // messaging().onNotificationOpenedApp(remoteMessage => {
+      //   console.log('onNotificationOpenedApp: ', JSON.stringify(remoteMessage));
+      // });
+
+      // messaging()
+      //   .getInitialNotification()
+      //   .then(remoteMessage => {
+      //     if (remoteMessage) {
+      //       console.log(
+      //         'Notification caused app to open from quit state:',
+      //         JSON.stringify(remoteMessage),
+      //       );
+      //     }
+      //   });
+      // messaging().setBackgroundMessageHandler(async remoteMessage => {
+      //   console.log('Message handled in the background!', remoteMessage);
+      // });
     }
   }, [isFocused]);
 
+  // const getFCMToken = async () => {
+  //   try {
+  //     const token = await messaging().getToken();
+  //     console.log('tokentokentoken=============', token);
+  //   } catch (e) {
+  //     console.log(e);
+  //   }
+  // };
   const getData = async () => {
     const get = await getUserData();
     setUserOldData(get._data);
@@ -198,6 +232,9 @@ const Profile = ({navigation}) => {
   };
 
   const follow = item => {
+    // messaging().onMessage(async remoteMessage => {
+    //   console.log('A new FCM message arrived!', JSON.stringify(remoteMessage));
+    // });
     const currentUserId = auth().currentUser.uid;
     const itemRef = firestore().collection('users').doc(`${currentUserId}`);
     const ref = firestore().collection('users').doc(item?.id);
@@ -450,7 +487,6 @@ const Profile = ({navigation}) => {
             data={followingData}
             bounces={false}
             renderItem={({item}) => {
-              setAbc(item?.Following);
               return item.Followers ? (
                 <View style={styles.userListView}>
                   <Image
@@ -572,20 +608,25 @@ const styles = StyleSheet.create({
     alignSelf: 'center',
   },
   userNameView: {
-    borderWidth: 2,
+    borderWidth: 0.5,
     height: hp(5),
     width: wp(50),
     justifyContent: 'center',
     alignItems: 'center',
-    marginTop: hp(3),
+    marginTop: hp(4),
     alignSelf: 'center',
     borderRadius: hp(2),
-    backgroundColor: '#7d5fff',
+    backgroundColor: '#00ffff',
+    shadowOffset: {width: 6, height: 4},
+    shadowColor: '#0000',
+    shadowOpacity: 0.4,
+    shadowRadius: 4,
   },
   userNameText: {
-    fontSize: fontSize(21),
+    fontSize: fontSize(17),
     fontWeight: '600',
-    color: 'white',
+    color: '#003333',
+    fontVariant: ['small-caps'],
   },
   editPictureView: {
     alignSelf: 'center',
@@ -606,7 +647,7 @@ const styles = StyleSheet.create({
     borderColor: 'gray',
   },
   saveButtonView: {
-    marginTop: hp(10),
+    marginTop: hp(20),
     height: hp(6),
     width: wp(60),
     justifyContent: 'center',
@@ -680,7 +721,7 @@ const styles = StyleSheet.create({
     paddingRight: wp(2),
   },
   followButton: {
-    width: wp(20),
+    width: wp(25),
     height: hp(3.5),
     borderRadius: hp(0.7),
     justifyContent: 'center',

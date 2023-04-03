@@ -27,10 +27,8 @@ const MyProject = ({navigation}) => {
       <View style={styles.imageView}>
         <ImageBackground
           source={imageConstatnt.fittnes}
-          style={styles.imageStyle}>
-          <LinearGradient
-            colors={['rgba(0, 0, 0, 0)', 'rgba(0, 0, 0, 0.72)']}
-            style={styles.linearGradient}>
+          style={styles.imageView}>
+          <LinearGradient colors={['rgba(0, 0, 0, 0)', 'rgba(0, 0, 0, 0.72)']}>
             <View style={styles.$60View}>
               <LinearGradient
                 colors={['rgba(41, 146, 243, 1)', 'rgba(13, 227, 215, 1)']}
@@ -160,11 +158,6 @@ const styles = StyleSheet.create({
     color: 'rgba(255, 255, 255, 1)',
   },
   imageView: {
-    width: wp(100),
-    height: hp(31.4),
-    // position: 'absolute',
-  },
-  imageStyle: {
     width: wp(100),
     height: hp(31.4),
   },

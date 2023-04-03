@@ -26,7 +26,7 @@ const styles = StyleSheet.create({
   textInput: {
     borderRadius: hp(1),
     color: 'green',
-    height: hp(5),
+    height: hp(6),
     width: wp(85),
     backgroundColor: '#fff',
     paddingHorizontal: wp(5),

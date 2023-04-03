@@ -36,7 +36,6 @@ const ZumbaClass = ({navigation}) => {
       },
     ]);
   };
-  // console.log('data :::: ', data);
   const restData = () => {
     setData('');
   };

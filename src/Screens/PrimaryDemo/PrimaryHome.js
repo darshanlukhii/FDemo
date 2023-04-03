@@ -153,12 +153,12 @@ const PrimaryHome = () => {
           const abc = userOldData?.Following?.some(c => {
             return c === item?.PostId;
           });
-          const a = item?.PostId?.localeCompare(auth().currentUser.uid);
+          const current = item?.PostId?.localeCompare(auth().currentUser.uid);
           const i = item?.PostBookMark.some(i => i == auth().currentUser.uid);
           const like = item?.PostLike.some(
             aaa => aaa == auth().currentUser.uid,
           );
-          return abc === true || a === 0 ? (
+          return abc === true || current === 0 ? (
             <View style={{padding: 3}}>
               <View style={styles.mainStyle}>
                 <View style={styles.userImage}>

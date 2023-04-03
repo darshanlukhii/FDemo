@@ -26,6 +26,13 @@ import Profile from '../Screens/PrimaryDemo/Profile';
 import ChatList from '../Screens/PrimaryDemo/ChatList';
 
 const Navigation = () => {
+  const checkToken = async () => {
+    const fcmToken = await messaging().getToken();
+    if (fcmToken) {
+      console.log('fcmToken', fcmToken);
+    }
+  };
+
   const Stack = createNativeStackNavigator();
   return (
     <NavigationContainer>

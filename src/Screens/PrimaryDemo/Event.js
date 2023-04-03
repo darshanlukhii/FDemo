@@ -125,7 +125,7 @@ const Event = () => {
     <View style={styles.container}>
       <Header text={'Event'} />
       <View style={{flex: 1}}>
-        <Text style={styles.creatPostTextStyle}>Create post</Text>
+        <Text style={styles.createPostTextStyle}>Create post</Text>
         <TextInput
           style={styles.textInputModalView}
           multiline={true}
@@ -135,7 +135,11 @@ const Event = () => {
           onChangeText={text => setCaption(text)}
         />
         <Text style={styles.addToTextStyle}>Add to your post</Text>
-        <View style={styles.buttonsMainView}>
+        <View
+          style={{
+            ...styles.buttonsMainView,
+            marginTop: imageData === '' ? hp(4) : hp(2),
+          }}>
           <TouchableOpacity
             style={{
               ...styles.addImageView,
@@ -166,7 +170,7 @@ const Event = () => {
         />
         {imageData === '' ? null : (
           <View>
-            <Text style={{...styles.addToTextStyle, marginBottom: hp(2)}}>
+            <Text style={{...styles.addToTextStyle, marginBottom: hp(1)}}>
               Uploaded Image / Video
             </Text>
             <TouchableOpacity
@@ -186,6 +190,7 @@ const Event = () => {
             )}
           </View>
         )}
+
         <TouchableOpacity
           onPress={() => {
             // setFireStoreData();
@@ -193,18 +198,17 @@ const Event = () => {
           }}>
           <LinearGradient
             colors={[
+              colorConstatnt.lightRed,
               colorConstatnt.lightPurple,
               colorConstatnt.lightBlue,
               colorConstatnt.lightGreen,
-              colorConstatnt.lightYellow,
-              colorConstatnt.lightOrange,
-              colorConstatnt.lightRed,
             ]}
-            // start={{x: 0.2, y: 1}}
-            // end={{x: 0.7, y: 2}}
             start={{x: 1.2, y: 0.5}}
             end={{x: 0.1, y: 1.4}}
-            style={styles.postButtonView}>
+            style={{
+              ...styles.postButtonView,
+              marginTop: imageData === '' ? hp(8) : hp(4),
+            }}>
             <Text style={styles.saveTextStyle}>POST</Text>
           </LinearGradient>
         </TouchableOpacity>
@@ -218,7 +222,7 @@ const styles = StyleSheet.create({
     flex: 1,
     // backgroundColor: '#e0ffff',
   },
-  creatPostTextStyle: {
+  createPostTextStyle: {
     alignSelf: 'center',
     color: '#000',
     fontSize: fontSize(20),
@@ -226,7 +230,7 @@ const styles = StyleSheet.create({
     marginTop: hp(4),
   },
   textInputModalView: {
-    marginTop: hp(3),
+    marginTop: hp(4),
     height: hp(18.84),
     width: wp(85),
     borderWidth: 1,
@@ -236,7 +240,7 @@ const styles = StyleSheet.create({
     alignSelf: 'center',
   },
   addToTextStyle: {
-    marginTop: hp(2.7),
+    marginTop: hp(1.5),
     color: '#000',
     fontSize: fontSize(20),
     fontWeight: '500',
@@ -244,7 +248,6 @@ const styles = StyleSheet.create({
     // marginLeft: wp(3.2),
   },
   buttonsMainView: {
-    marginTop: hp(3),
     flexDirection: 'row',
     justifyContent: 'space-around',
     marginHorizontal: wp(1.5),
@@ -269,8 +272,8 @@ const styles = StyleSheet.create({
     paddingLeft: wp(1.86),
   },
   bottomTextInputStyle: {
-    marginTop: hp(2.58),
-    height: hp(3.57),
+    marginTop: hp(3.5),
+    height: hp(5),
     width: wp(85),
     borderWidth: 1,
     borderRadius: hp(1),

@@ -51,6 +51,7 @@ const styles = StyleSheet.create({
     alignSelf: 'center',
     fontWeight: '600',
     fontSize: fontSize(23),
+    color: 'black',
   },
   drawerStyle: {
     position: 'absolute',
