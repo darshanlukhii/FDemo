@@ -43,4 +43,5 @@ export const imageConstatnt = {
   backGround: require('../assets/images/backGround.png'),
   messages: require('../assets/images/messages.png'),
   userData: require('../assets/images/userData.png'),
+  notification: require('../assets/images/notification.png'),
 };

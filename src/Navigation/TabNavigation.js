@@ -104,25 +104,25 @@ const TabNavigation = () => {
 
 const styles = StyleSheet.create({
   tabImageIconStyle: {
-    height: hp(3),
-    width: hp(3),
+    height: hp(2.5),
+    width: hp(2.5),
   },
   profileImage: {
-    height: hp(4),
-    width: hp(4),
+    height: hp(2.5),
+    width: hp(2.5),
     borderRadius: hp(2),
   },
   focusTabImageIconStyle: {
-    height: hp(3),
-    width: hp(3),
+    height: hp(2.5),
+    width: hp(2.5),
     tintColor: '#fff',
   },
   tabBarStyle: {
     position: 'absolute',
     borderRadius: hp(5),
     bottom: hp(2),
-    right: wp(3),
-    left: wp(3),
+    right: wp(6),
+    left: wp(6),
     height: hp(6),
     paddingTop: Platform.OS == 'ios' ? hp(3) : hp(0),
   },

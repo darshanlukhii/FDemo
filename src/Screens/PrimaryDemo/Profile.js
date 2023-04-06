@@ -29,7 +29,7 @@ const Profile = ({navigation}) => {
   const [data2, setData2] = useState([]);
   const [followingData, setFollowingData] = useState([]);
   const [followersData, setFollowersData] = useState([]);
-  // const [abc, setAbc] = useState([]);
+  const [requestData, setRequestData] = useState([]);
   const [imageData, setImageData] = useState('');
   const [imgDownloadUrl, setImgDownloadUrl] = useState('');
   const [name, setName] = useState('');
@@ -39,6 +39,7 @@ const Profile = ({navigation}) => {
   const [isVisible, setVisible] = useState(false);
   const [isFollowingVisible, setFollowingVisible] = useState(false);
   const [isFollowersVisible, setFollowersVisible] = useState(false);
+  const [isRequestVisible, setRequestVisible] = useState(false);
   const isFocused = useIsFocused();
   const {navigate} = useNavigation();
 
@@ -48,41 +49,10 @@ const Profile = ({navigation}) => {
       getUserAllData();
       Data();
       // getFCMToken();
-      // messaging().onMessage(async remoteMessage => {
-      //   console.log(
-      //     'A new FCM message arrived!',
-      //     JSON.stringify(remoteMessage),
-      //   );
-      // });
-
-      // messaging().onNotificationOpenedApp(remoteMessage => {
-      //   console.log('onNotificationOpenedApp: ', JSON.stringify(remoteMessage));
-      // });
-
-      // messaging()
-      //   .getInitialNotification()
-      //   .then(remoteMessage => {
-      //     if (remoteMessage) {
-      //       console.log(
-      //         'Notification caused app to open from quit state:',
-      //         JSON.stringify(remoteMessage),
-      //       );
-      //     }
-      //   });
-      // messaging().setBackgroundMessageHandler(async remoteMessage => {
-      //   console.log('Message handled in the background!', remoteMessage);
-      // });
+      // notification();
     }
   }, [isFocused]);
 
-  // const getFCMToken = async () => {
-  //   try {
-  //     const token = await messaging().getToken();
-  //     console.log('tokentokentoken=============', token);
-  //   } catch (e) {
-  //     console.log(e);
-  //   }
-  // };
   const getData = async () => {
     const get = await getUserData();
     setUserOldData(get._data);
@@ -115,10 +85,17 @@ const Profile = ({navigation}) => {
           );
           setFollowersData(() =>
             user.filter(snap => {
-              if (snap.Following)
+              if (snap.Following) {
                 return snap.Following.some(
                   aaa => aaa === auth().currentUser.uid,
                 );
+              }
+            }),
+          );
+          setRequestData(() =>
+            user.filter(snap => {
+              if (snap.Request)
+                return snap.Request.some(aaa => aaa === auth().currentUser.uid);
             }),
           );
         });
@@ -232,9 +209,56 @@ const Profile = ({navigation}) => {
   };
 
   const follow = item => {
-    // messaging().onMessage(async remoteMessage => {
-    //   console.log('A new FCM message arrived!', JSON.stringify(remoteMessage));
-    // });
+    const currentUserId = auth().currentUser.uid;
+    const itemRef = firestore().collection('users').doc(`${currentUserId}`);
+    const ref = firestore().collection('users').doc(item?.id);
+    let followBtnVisibility;
+    if (item?.Request) {
+      followBtnVisibility = item?.Request.some(aaa => aaa === userOldData.id);
+    }
+    try {
+      if (followBtnVisibility) {
+        ref.update({
+          Following: firebase.firestore.FieldValue.arrayUnion(currentUserId),
+        });
+      }
+      // else {
+      //   ref.update({
+      //     Following: firebase.firestore.FieldValue.arrayRemove(currentUserId),
+      //   });
+      // }
+      getData();
+    } catch (error) {
+      console.log(error);
+    }
+    try {
+      if (followBtnVisibility) {
+        itemRef.update({
+          Followers: firebase.firestore.FieldValue.arrayUnion(item?.id),
+        });
+      }
+      // else {
+      //   itemRef.update({
+      //     Followers: firebase.firestore.FieldValue.arrayRemove(item?.id),
+      //   });
+      // }
+      getData();
+    } catch (error) {
+      console.log(error);
+    }
+    try {
+      if (followBtnVisibility) {
+        ref.update({
+          Request: firebase.firestore.FieldValue.arrayRemove(userOldData.id),
+        });
+      }
+      getData();
+    } catch (error) {
+      console.log(error);
+    }
+  };
+
+  const FollowingRemove = item => {
     const currentUserId = auth().currentUser.uid;
     const itemRef = firestore().collection('users').doc(`${currentUserId}`);
     const ref = firestore().collection('users').doc(item?.id);
@@ -242,12 +266,9 @@ const Profile = ({navigation}) => {
     if (item?.Followers) {
       followBtnVisibility = item?.Followers.some(aaa => aaa === userOldData.id);
     }
+    console.log(item?.id);
     try {
-      if (!followBtnVisibility) {
-        itemRef.update({
-          Following: firebase.firestore.FieldValue.arrayUnion(item?.id),
-        });
-      } else {
+      if (followBtnVisibility) {
         itemRef.update({
           Following: firebase.firestore.FieldValue.arrayRemove(item?.id),
         });
@@ -257,11 +278,7 @@ const Profile = ({navigation}) => {
       console.log(error);
     }
     try {
-      if (!followBtnVisibility) {
-        ref.update({
-          Followers: firebase.firestore.FieldValue.arrayUnion(currentUserId),
-        });
-      } else {
+      if (followBtnVisibility) {
         ref.update({
           Followers: firebase.firestore.FieldValue.arrayRemove(currentUserId),
         });
@@ -272,13 +289,134 @@ const Profile = ({navigation}) => {
     }
   };
 
+  // const follow = item => {
+  //   const currentUserId = auth().currentUser.uid;
+  //   const itemRef = firestore().collection('users').doc(`${currentUserId}`);
+  //   const ref = firestore().collection('users').doc(item?.id);
+  //   let followBtnVisibility;
+  //   if (item?.Followers) {
+  //     followBtnVisibility = item?.Followers.some(aaa => aaa === userOldData.id);
+  //   }
+  //   try {
+  //     if (!followBtnVisibility) {
+  //       itemRef.update({
+  //         Following: firebase.firestore.FieldValue.arrayUnion(item?.id),
+  //       });
+  //     } else {
+  //       itemRef.update({
+  //         Following: firebase.firestore.FieldValue.arrayRemove(item?.id),
+  //       });
+  //     }
+  //     getData();
+  //   } catch (error) {
+  //     console.log(error);
+  //   }
+  //   try {
+  //     if (!followBtnVisibility) {
+  //       ref.update({
+  //         Followers: firebase.firestore.FieldValue.arrayUnion(currentUserId),
+  //       });
+  //     } else {
+  //       ref.update({
+  //         Followers: firebase.firestore.FieldValue.arrayRemove(currentUserId),
+  //       });
+  //     }
+  //     getData();
+  //   } catch (error) {
+  //     console.log(error);
+  //   }
+  // };
+
+  const request = item => {
+    const currentUserId = auth().currentUser.uid;
+    const itemRef = firestore().collection('users').doc(`${currentUserId}`);
+    const ref = firestore().collection('users').doc(item?.id);
+    let followBtnVisibility;
+    if (userOldData?.Request) {
+      followBtnVisibility = userOldData?.Request.some(aaa => aaa === item?.id);
+    }
+    try {
+      if (!followBtnVisibility) {
+        itemRef.update({
+          Request: firebase.firestore.FieldValue.arrayUnion(item?.id),
+        });
+      } else {
+        itemRef.update({
+          Request: firebase.firestore.FieldValue.arrayRemove(item?.id),
+        });
+      }
+      getData();
+    } catch (error) {
+      console.log(error);
+    }
+  };
+
+  const deleteRequest = item => {
+    const ref = firestore().collection('users').doc(item?.id);
+    let followBtnVisibility;
+    if (item?.Request) {
+      followBtnVisibility = item?.Request.some(aaa => aaa === userOldData?.id);
+    }
+    try {
+      if (followBtnVisibility) {
+        ref.update({
+          Request: firebase.firestore.FieldValue.arrayRemove(userOldData?.id),
+        });
+      }
+      getData();
+    } catch (error) {
+      console.log(error);
+    }
+  };
+
+  const getFCMToken = async () => {
+    try {
+      const token = await messaging().getToken();
+      console.log('tokentokentoken=============', token);
+    } catch (e) {
+      console.log(e);
+    }
+  };
+
+  const notification = () => {
+    messaging().onMessage(async remoteMessage => {
+      console.log(
+        'A new Message foreGround arrived!',
+        JSON.stringify(remoteMessage),
+      );
+    });
+
+    messaging().onNotificationOpenedApp(remoteMessage => {
+      console.log(
+        'Notification caused app to open from background state: ',
+        JSON.stringify(remoteMessage),
+      );
+    });
+
+    messaging()
+      .getInitialNotification()
+      .then(remoteMessage => {
+        if (remoteMessage) {
+          console.log(
+            'Notification caused app to open from quit state:',
+            JSON.stringify(remoteMessage),
+          );
+        }
+      });
+  };
+
   return (
     <View style={styles.container}>
       <Header
         text={'Profile'}
         isTrue={true}
+        isNotification={true}
         source={imageConstatnt.userData}
+        sourceNotification={imageConstatnt.notification}
         onPress={() => setVisible(!isVisible)}
+        onPressNotification={() => {
+          setRequestVisible(!isRequestVisible);
+        }}
       />
       <View style={styles.profileStatus}>
         <Image source={{uri: userOldData.uri}} style={styles.userIdImage} />
@@ -322,7 +460,6 @@ const Profile = ({navigation}) => {
           }}
         />
       ) : null}
-
       <ReactNativeModal
         animationIn={'slideInUp'}
         animationInTiming={1000}
@@ -419,10 +556,14 @@ const Profile = ({navigation}) => {
             bounces={false}
             renderItem={({item}) => {
               let followBtnVisibility;
-              if (item?.Followers) {
-                followBtnVisibility = item?.Followers.some(
-                  aaa => aaa === userOldData.id,
+              if (userOldData?.Request) {
+                followBtnVisibility = userOldData?.Request.some(
+                  aaa => aaa === item?.id,
                 );
+              }
+              let show;
+              if (userOldData?.Following) {
+                show = userOldData?.Following.some(aaa => aaa === item?.id);
               }
               return (
                 <View style={styles.userListView}>
@@ -439,22 +580,108 @@ const Profile = ({navigation}) => {
                       Suggestion to follow {item.name}{' '}
                     </Text>
                   </View>
+                  {show === true ? (
+                    <TouchableOpacity
+                      style={{
+                        ...styles.followButton,
+                        backgroundColor: '#d9dadb',
+                      }}
+                      onPress={() => {
+                        FollowingRemove(item);
+                      }}>
+                      <Text
+                        style={{
+                          color: 'black',
+                        }}>
+                        Following
+                      </Text>
+                    </TouchableOpacity>
+                  ) : (
+                    <TouchableOpacity
+                      style={{
+                        ...styles.followButton,
+                        backgroundColor:
+                          followBtnVisibility === true ? '#d9dadb' : '#3497FE',
+                      }}
+                      onPress={() => {
+                        request(item);
+                      }}>
+                      <Text
+                        style={{
+                          color:
+                            followBtnVisibility === true ? 'black' : 'white',
+                        }}>
+                        {followBtnVisibility === true ? 'Request' : 'Follow'}
+                      </Text>
+                    </TouchableOpacity>
+                  )}
+                </View>
+              );
+            }}
+          />
+        </SafeAreaView>
+      </ReactNativeModal>
+      {/* --------------------------------------------------> Request Modal <-------------------------------------------------- */}
+      <ReactNativeModal
+        animationIn={'slideInUp'}
+        animationInTiming={1000}
+        isVisible={isRequestVisible}
+        backdropOpacity={0.8}
+        style={{alignSelf: 'center', margin: 0}}
+        onBackdropPress={() => {
+          setRequestVisible(!isRequestVisible);
+        }}>
+        <SafeAreaView style={styles.commentModal}>
+          <TouchableOpacity
+            style={styles.backButtonView}
+            onPress={() => {
+              setRequestVisible(!isRequestVisible);
+            }}>
+            <View style={styles.headerView}>
+              <Text style={styles.backButtonTextStyle}>Back</Text>
+              <Text style={styles.suggestionText}>Request</Text>
+            </View>
+          </TouchableOpacity>
+          <FlatList
+            data={requestData}
+            bounces={false}
+            renderItem={({item}) => {
+              return (
+                <View style={styles.userListView}>
+                  <Image
+                    source={{uri: item.uri}}
+                    style={styles.dataImageStyle}
+                  />
+                  <View style={{flex: 1}}>
+                    <Text style={styles.userName}>{item.name}</Text>
+                    <Text
+                      style={styles.description}
+                      numberOfLines={1}
+                      ellipsizeMode="tail">
+                      Request From {item.name}{' '}
+                    </Text>
+                  </View>
                   <TouchableOpacity
                     style={{
                       ...styles.followButton,
-                      backgroundColor: followBtnVisibility
-                        ? '#d9dadb'
-                        : '#3497FE',
+                      backgroundColor: '#3497FE',
+                      width: wp(20),
                     }}
                     onPress={() => {
                       follow(item);
                     }}>
-                    <Text
-                      style={{
-                        color: followBtnVisibility ? 'black' : 'white',
-                      }}>
-                      {followBtnVisibility ? 'Following' : 'Follow'}
-                    </Text>
+                    <Text style={{color: 'white'}}>Confirm</Text>
+                  </TouchableOpacity>
+                  <TouchableOpacity
+                    style={{
+                      ...styles.followButton,
+                      backgroundColor: '#d9dadb',
+                      width: wp(20),
+                    }}
+                    onPress={() => {
+                      deleteRequest(item);
+                    }}>
+                    <Text style={{color: 'black'}}>Delete</Text>
                   </TouchableOpacity>
                 </View>
               );
@@ -539,20 +766,20 @@ const Profile = ({navigation}) => {
             }}>
             <View style={styles.headerView}>
               <Text style={styles.backButtonTextStyle}>Back</Text>
-              <Text style={styles.suggestionText}>Following</Text>
+              <Text style={styles.suggestionText}>Followers</Text>
             </View>
           </TouchableOpacity>
           <FlatList
             data={followersData}
             bounces={false}
             renderItem={({item}) => {
-              // console.log('---------------------------->>>>> ', item);
               let visibility;
-              if (item?.Followers) {
+              if (item?.Following) {
+                console.log();
                 // visibility = item?.Followers?.filter(a => {});
               }
               // console.log('-------', abc);
-              return item.Followers ? (
+              return item?.Following ? (
                 <View style={styles.userListView}>
                   <Image
                     source={{uri: item.uri}}

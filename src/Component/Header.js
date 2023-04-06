@@ -11,7 +11,7 @@ import {fontSize, hp, wp} from '../helper/primaryConstant';
 import {useNavigation} from '@react-navigation/native';
 import {DrawerActions} from '@react-navigation/native';
 
-const Header = ({text, isTrue, onPress, source, isFalse}) => {
+const Header = ({text, isTrue, onPress, source, isFalse, isNotification, sourceNotification, onPressNotification}) => {
   const navigation = useNavigation();
   return (
     <SafeAreaView style={styles.headerStyle}>
@@ -28,6 +28,13 @@ const Header = ({text, isTrue, onPress, source, isFalse}) => {
       {isTrue ? (
         <TouchableOpacity style={styles.messageIconStyle} onPress={onPress}>
           <Image source={source} style={{height: hp(2.7), width: hp(2.7)}} />
+        </TouchableOpacity>
+      ) : null}
+      {isNotification ? (
+        <TouchableOpacity
+          style={{position: 'absolute', right: wp(12), bottom: wp(0.8)}}
+          onPress={onPressNotification}>
+          <Image source={sourceNotification} style={{height: hp(2.7), width: hp(2.7)}} />
         </TouchableOpacity>
       ) : null}
     </SafeAreaView>
