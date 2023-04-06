@@ -107,7 +107,6 @@ const PrimaryHome = () => {
   };
 
   const commentPost = docID => {
-    // console.log('============', docID);
     try {
       if (commentText < 1 || commentText == '') {
         alert('Please enter comment');
