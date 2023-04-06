@@ -40,7 +40,6 @@ const PrimaryHome = () => {
     const get = await getUserData();
     setUserOldData(get._data);
   };
-  // console.log('----', userOldData?.Following);
 
   const getData = () => {
     try {
@@ -107,12 +106,10 @@ const PrimaryHome = () => {
     }
   };
 
-  // console.log('mefkemr fvn fgvdjrbfgnv jgvbn gjv ;;;;;', userOldData.Following);
-
   const commentPost = docID => {
     // console.log('============', docID);
     try {
-      if (commentText < 1 || commentText !== '') {
+      if (commentText < 1 || commentText == '') {
         alert('Please enter comment');
       } else {
         const itemRef = firestore().collection('usersPost').doc(`${docID}`);
