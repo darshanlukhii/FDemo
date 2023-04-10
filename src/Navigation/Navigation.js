@@ -1,4 +1,4 @@
-import React, {useState} from 'react';
+import React, {useRef, useState} from 'react';
 import {NavigationContainer} from '@react-navigation/native';
 import {createNativeStackNavigator} from '@react-navigation/native-stack';
 import Login from '../Screens/Login';
@@ -24,18 +24,31 @@ import Event from '../Screens/PrimaryDemo/Event';
 import Favourite from '../Screens/PrimaryDemo/Favourite';
 import Profile from '../Screens/PrimaryDemo/Profile';
 import ChatList from '../Screens/PrimaryDemo/ChatList';
+import analytics from '@react-native-firebase/analytics';
 
 const Navigation = () => {
-  const checkToken = async () => {
-    const fcmToken = await messaging().getToken();
-    if (fcmToken) {
-      console.log('fcmToken', fcmToken);
-    }
-  };
-
+  const routeNameRef = useRef();
+  const navigationRef = useRef();
   const Stack = createNativeStackNavigator();
   return (
-    <NavigationContainer>
+    <NavigationContainer
+      ref={navigationRef}
+      onReady={() => {
+        routeNameRef.current = navigationRef.current.getCurrentRoute().name;
+      }}
+      onStateChange={async () => {
+        const previousRouteName = routeNameRef.current;
+        const currentRouteName = navigationRef.current.getCurrentRoute().name;
+
+        if (previousRouteName !== currentRouteName) {
+          // alert(currentRouteName);
+          await analytics().logScreenView({
+            screen_name: currentRouteName,
+            screen_class: currentRouteName,
+          });
+        }
+        routeNameRef.current = currentRouteName;
+      }}>
       <Stack.Navigator
         // initialRouteName="Chat"
         screenOptions={{
@@ -46,14 +59,11 @@ const Navigation = () => {
           },
         }}>
         {/* <Stack.Screen name="Firestore" component={Firestore} /> */}
-
         <Stack.Screen name="Splash" component={Splash} />
         <Stack.Screen name="Login" component={Login} />
         <Stack.Screen name="Signup" component={Signup} />
         <Stack.Screen name="Drawers" component={Drawers} />
         <Stack.Screen name="ChatList" component={ChatList} />
-        {/* <Stack.Screen name="Tabnavigation" component={Tabnavigation} /> */}
-
         {/* <Stack.Screen name="Home" component={Home} />
         <Stack.Screen name="mobileverification" component={MoblieVerify} />
         <Stack.Screen name="RealTimeDataBase" component={RealTimeDataBase} />
@@ -65,8 +75,8 @@ const Navigation = () => {
         <Stack.Screen name="FirebaseDemo" component={FirebaseDemo} />
         <Stack.Screen name="ApiCalling" component={ApiCalling} />
         <Stack.Screen name="DemoApi" component={DemoApi} />
-      <Stack.Screen name="ApiApi" component={ApiApi} /> */}
-        {/* <Stack.Screen name="FirebaseDemo" component={FirebaseDemo} /> */}
+        <Stack.Screen name="ApiApi" component={ApiApi} />
+        <Stack.Screen name="FirebaseDemo" component={FirebaseDemo} /> */}
       </Stack.Navigator>
     </NavigationContainer>
   );

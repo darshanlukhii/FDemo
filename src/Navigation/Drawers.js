@@ -21,9 +21,6 @@ function Drawers() {
           headerTintColor: 'black',
         }}
       />
-      {/* <Drawer.Screen name="Favourite" component={Favourite} />
-      <Drawer.Screen name="Event" component={Event} />
-      <Drawer.Screen name="Profile" component={Profile} /> */}
     </Drawer.Navigator>
   );
 }

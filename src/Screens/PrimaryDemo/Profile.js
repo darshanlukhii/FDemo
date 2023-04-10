@@ -22,6 +22,7 @@ import ReactNativeModal from 'react-native-modal';
 import ProfileComponent from '../../Component/ProfileComponent';
 import {imageConstatnt} from '../../helper/imageConstatnt';
 import messaging from '@react-native-firebase/messaging';
+import remoteConfig from '@react-native-firebase/remote-config';
 
 const Profile = ({navigation}) => {
   const [userOldData, setUserOldData] = useState([]);
@@ -42,6 +43,7 @@ const Profile = ({navigation}) => {
   const [isRequestVisible, setRequestVisible] = useState(false);
   const isFocused = useIsFocused();
   const {navigate} = useNavigation();
+  const [buttonColorProfile, setButtonColorProfile] = useState();
 
   useEffect(() => {
     if (isFocused) {
@@ -50,8 +52,48 @@ const Profile = ({navigation}) => {
       Data();
       // getFCMToken();
       // notification();
+      remote();
     }
   }, [isFocused]);
+
+  const remote = async () => {
+    remoteConfig()
+      .fetchAndActivate()
+      .then(() => {
+        remoteConfig()
+          .fetch(2)
+          .then(() => {
+            firebase
+              .remoteConfig()
+              .activate()
+              .then(activated => {
+                const buttonColor = firebase
+                  .remoteConfig()
+                  .getValue('edit_profile')
+                  .asBoolean();
+                // console.log('Button color:', buttonColor);
+                setButtonColorProfile(buttonColor);
+              });
+          });
+      });
+    // await remoteConfig().setConfigSettings({
+    //   minimumFetchIntervalMillis: 2000,
+    // });
+    // remoteConfig().setDefaults({
+    //   edit_profile: true,
+    // });
+    // remoteConfig()
+    //   .fetchAndActivate()
+    //   .then(() => {
+    //     remoteConfig().fetch(2);
+    //   });
+    // const buttonColor = firebase
+    //   .remoteConfig()
+    //   .getValue('edit_profile')
+    //   .asBoolean();
+    // console.log('Button color:', buttonColor);
+    // setButtonColorProfile(buttonColor);
+  };
 
   const getData = async () => {
     const get = await getUserData();
@@ -429,7 +471,18 @@ const Profile = ({navigation}) => {
         <ProfileComponent
           number={userOldData?.Following ? userOldData?.Following?.length : 0}
           title="Following"
-          onPress={() => setFollowingVisible(!isFollowingVisible)}
+          onPress={async () => {
+            setFollowingVisible(!isFollowingVisible);
+            // await analytics().logJoinGroup({
+            //   group_id: 'joinGroup__111',
+            // });
+            // await analytics().logEvent('Following', {
+            //   id: `${auth().currentUser.uid}`,
+            //   description: ['Following Data'],
+            //   // item: 'mens grey t-shirt',
+            //   // size: 'L',
+            // });
+          }}
         />
       </View>
       <TouchableOpacity
@@ -437,7 +490,14 @@ const Profile = ({navigation}) => {
         onPress={() => {
           setModalVisible(!isModalVisible);
         }}>
-        <Text style={styles.editPicture}>Edit Profile</Text>
+        {/* <Text style={{...styles.editPicture, color: buttonColor}}> */}
+        <Text
+          style={[
+            styles.editPicture,
+            {color: buttonColorProfile ? '#2F87EC' : 'red'},
+          ]}>
+          Edit Profile
+        </Text>
       </TouchableOpacity>
       <View style={styles.horizontalLine}></View>
       <Text style={styles.postsTextStyle}>Posts</Text>
