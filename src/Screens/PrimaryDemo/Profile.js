@@ -23,6 +23,8 @@ import ProfileComponent from '../../Component/ProfileComponent';
 import {imageConstatnt} from '../../helper/imageConstatnt';
 import messaging from '@react-native-firebase/messaging';
 import remoteConfig from '@react-native-firebase/remote-config';
+import analytics from '@react-native-firebase/analytics';
+import crashlytics from '@react-native-firebase/crashlytics';
 
 const Profile = ({navigation}) => {
   const [userOldData, setUserOldData] = useState([]);
@@ -61,7 +63,7 @@ const Profile = ({navigation}) => {
       .fetchAndActivate()
       .then(() => {
         remoteConfig()
-          .fetch(2)
+          .fetch(3)
           .then(() => {
             firebase
               .remoteConfig()
@@ -447,6 +449,27 @@ const Profile = ({navigation}) => {
       });
   };
 
+  useEffect(() => {
+    crashlytics().log('App mounted.');
+    getUserDetails();
+    return () => {
+      crashlytics().log('App Just Unmounted.');
+    };
+  }, []);
+
+  const getUserDetails = () => {
+    try {
+      crashlytics().setUserId('User Id');
+      crashlytics().setAttributes({
+        email: auth().currentUser.email,
+        username: userOldData.name,
+      });
+    } catch (error) {
+      console.log(error);
+      crashlytics().recordError(error);
+    }
+  };
+
   return (
     <View style={styles.container}>
       <Header
@@ -466,22 +489,27 @@ const Profile = ({navigation}) => {
         <ProfileComponent
           number={userOldData?.Followers ? userOldData?.Followers?.length : 0}
           title="Followers"
-          onPress={() => setFollowersVisible(!isFollowersVisible)}
+          onPress={async () => {
+            setFollowersVisible(!isFollowersVisible);
+            await analytics().logEvent(`${userOldData.name}`, {
+              id: {
+                user: `${auth().currentUser.uid}`,
+                description: ['Followers Data'],
+              },
+            });
+          }}
         />
         <ProfileComponent
           number={userOldData?.Following ? userOldData?.Following?.length : 0}
           title="Following"
           onPress={async () => {
             setFollowingVisible(!isFollowingVisible);
-            // await analytics().logJoinGroup({
-            //   group_id: 'joinGroup__111',
-            // });
-            // await analytics().logEvent('Following', {
-            //   id: `${auth().currentUser.uid}`,
-            //   description: ['Following Data'],
-            //   // item: 'mens grey t-shirt',
-            //   // size: 'L',
-            // });
+            await analytics().logEvent(`${userOldData.name}`, {
+              id: {
+                user: `${auth().currentUser.uid}`,
+                description: ['Following Data'],
+              },
+            });
           }}
         />
       </View>
