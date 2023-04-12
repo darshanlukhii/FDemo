@@ -23,15 +23,15 @@ const Payment = () => {
   };
 
   const payment = action => {
-    let text;
-    if (action == 'starter') text = '492400';
-    else text = '984800';
+    let amount;
+    if (action == 'starter') amount = '492400';
+    else amount = '984800';
     var options = {
       description: 'Credits towards consultation',
       image: imageConstatnt.splash,
       currency: 'INR',
       key: 'rzp_test_DRufNF2XgsAf32',
-      amount: text,
+      amount: amount,
       name: userOldData.name,
       prefill: {
         email: userOldData.email,
