@@ -38,9 +38,7 @@ const Payment = () => {
         name: 'Razorpay Software',
         // method: 'card',
       },
-      theme: {
-        color: '#2F87EC',
-      },
+      theme: {color: '#2F87EC'},
     };
     RazorpayCheckout.open(options)
       .then(data => {
