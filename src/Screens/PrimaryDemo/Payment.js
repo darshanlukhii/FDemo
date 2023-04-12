@@ -24,8 +24,7 @@ const Payment = () => {
 
   const payment = action => {
     let amount;
-    if (action == 'starter') amount = '492400';
-    else amount = '984800';
+    action == 'starter' ? (amount = '492400') : (amount = '984800');
     var options = {
       description: 'Credits towards consultation',
       image: imageConstatnt.splash,
