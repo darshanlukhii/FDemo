@@ -426,7 +426,7 @@ const Profile = ({navigation}) => {
                   .remoteConfig()
                   .getValue('edit_profile')
                   .asBoolean();
-                console.log(`Button color ${userOldData.name}:`, buttonColor);
+                // console.log(`Button color ${userOldData.name}:`, buttonColor);
                 setButtonColorProfile(buttonColor);
               });
           });
@@ -498,6 +498,10 @@ const Profile = ({navigation}) => {
                 description: ['Followers Data'],
               },
             });
+            await analytics().logSelectContent({
+              content_type: 'clothing',
+              item_id: 'abcd',
+            });
           }}
         />
         <ProfileComponent
@@ -510,6 +514,10 @@ const Profile = ({navigation}) => {
                 user: `${auth().currentUser.uid}`,
                 description: ['Following Data'],
               },
+            });
+            await analytics().logSelectContent({
+              content_type: 'clothing',
+              item_id: 'abcd',
             });
           }}
         />

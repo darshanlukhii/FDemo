@@ -16,6 +16,7 @@ import {KeyboardAwareScrollView} from 'react-native-keyboard-aware-scroll-view';
 import {StackActions} from '@react-navigation/native';
 import {imageConstatnt} from '../helper/imageConstatnt';
 import {GoogleSignin} from '@react-native-google-signin/google-signin';
+import analytics from '@react-native-firebase/analytics';
 
 const Login = ({navigation}) => {
   const [email, setEmail] = useState('');
@@ -26,7 +27,7 @@ const Login = ({navigation}) => {
     try {
       if (email.length > 0 && password.length > 0) {
         const user = await auth().signInWithEmailAndPassword(email, password);
-        console.log(user);
+        // console.log('=====>password', user.password);
 
         // <---- Verify user with email verification ---->
         // if (user.user.emailVerified) {
@@ -44,6 +45,9 @@ const Login = ({navigation}) => {
         //   email: isUserLogin.user.email,
         //   uid: isUserLogin.user.uid,
         // });
+        await analytics().logLogin({
+          method: `${user?.user?.email}`,
+        });
       } else {
         Alert.alert('Enter the All Data');
       }
