@@ -100,6 +100,19 @@ const CustomDrawer = props => {
               props.navigation.navigate('Profile');
             }}
           />
+          <DrawerItem
+            style={{backgroundColor: 'rgba(44, 44, 44, 0.2)'}}
+            label="Subscription"
+            icon={() => (
+              <Image
+                style={styles.imageIconStyle}
+                source={imageConstatnt.payment}
+              />
+            )}
+            onPress={() => {
+              props.navigation.navigate('Payment');
+            }}
+          />
         </DrawerContentScrollView>
       </View>
       <DrawerItem

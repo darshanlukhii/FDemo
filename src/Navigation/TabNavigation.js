@@ -12,6 +12,7 @@ import firestore from '@react-native-firebase/firestore';
 import auth from '@react-native-firebase/auth';
 import {useIsFocused} from '@react-navigation/native';
 import LinearGradient from 'react-native-linear-gradient';
+import Payment from '../Screens/PrimaryDemo/Payment';
 
 const TabNavigation = () => {
   const Tab = createBottomTabNavigator();
@@ -67,6 +68,13 @@ const TabNavigation = () => {
             } else if (route.name === 'Profile') {
               iconName = {uri: userOldData.uri};
               iconStyle = styles.profileImage;
+            } else if (route.name == 'Payment') {
+              iconName = focused
+                ? imageConstatnt.paymentTab
+                : imageConstatnt.payment;
+              iconStyle = focused
+                ? styles.focusPaymentTabImageIconStyle
+                : styles.paymentTabImageIconStyle;
             }
 
             return <Image source={iconName} style={iconStyle} />;
@@ -97,6 +105,7 @@ const TabNavigation = () => {
         <Tab.Screen name="Favourite" component={Favourite} />
         <Tab.Screen name="Event" component={Event} />
         <Tab.Screen name="Profile" component={Profile} />
+        <Tab.Screen name="Payment" component={Payment} />
       </Tab.Navigator>
     </View>
   );
@@ -116,6 +125,15 @@ const styles = StyleSheet.create({
     height: hp(2.5),
     width: hp(2.5),
     tintColor: '#fff',
+  },
+  focusPaymentTabImageIconStyle: {
+    height: hp(3),
+    width: hp(3),
+  },
+  paymentTabImageIconStyle: {
+    height: hp(2.5),
+    width: hp(2.5),
+    tintColor: 'black',
   },
   tabBarStyle: {
     position: 'absolute',

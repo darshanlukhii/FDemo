@@ -65,7 +65,6 @@ const Event = () => {
       try {
         const response = storage().ref(`/PrimaryData/Post/${imageData.name}`);
         const put = await response.putFile(imageData.fileCopyUri);
-        // console.log(put);
         const url = await response.getDownloadURL();
         setImgDownloadUrl(url);
         return url;

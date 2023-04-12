@@ -860,6 +860,7 @@ PODS:
   - PromisesObjC (2.2.0)
   - PromisesSwift (2.2.0):
     - PromisesObjC (= 2.2.0)
+  - razorpay-pod (1.3.1)
   - RCT-Folly (2021.07.22.00):
     - boost
     - DoubleConversion
@@ -1075,6 +1076,9 @@ PODS:
     - React-Core
   - react-native-document-picker (8.2.0):
     - React-Core
+  - react-native-razorpay (2.3.0):
+    - razorpay-pod
+    - React
   - react-native-safe-area (0.5.1):
     - React
   - react-native-safe-area-context (4.5.0):
@@ -1262,6 +1266,7 @@ DEPENDENCIES:
   - react-native-biometrics (from `../node_modules/react-native-biometrics`)
   - react-native-date-picker (from `../node_modules/react-native-date-picker`)
   - react-native-document-picker (from `../node_modules/react-native-document-picker`)
+  - react-native-razorpay (from `../node_modules/react-native-razorpay`)
   - react-native-safe-area (from `../node_modules/react-native-safe-area`)
   - react-native-safe-area-context (from `../node_modules/react-native-safe-area-context`)
   - react-native-video (from `../node_modules/react-native-video`)
@@ -1332,6 +1337,7 @@ SPEC REPOS:
     - nanopb
     - PromisesObjC
     - PromisesSwift
+    - razorpay-pod
 
 EXTERNAL SOURCES:
   boost:
@@ -1380,6 +1386,8 @@ EXTERNAL SOURCES:
     :path: "../node_modules/react-native-date-picker"
   react-native-document-picker:
     :path: "../node_modules/react-native-document-picker"
+  react-native-razorpay:
+    :path: "../node_modules/react-native-razorpay"
   react-native-safe-area:
     :path: "../node_modules/react-native-safe-area"
   react-native-safe-area-context:
@@ -1488,6 +1496,7 @@ SPEC CHECKSUMS:
   nanopb: b552cce312b6c8484180ef47159bc0f65a1f0431
   PromisesObjC: 09985d6d70fbe7878040aa746d78236e6946d2ef
   PromisesSwift: cf9eb58666a43bbe007302226e510b16c1e10959
+  razorpay-pod: 1ca021af16022084c1b368be9f030a4931f1e5f8
   RCT-Folly: 0080d0a6ebf2577475bda044aa59e2ca1f909cda
   RCTRequired: 35a7977a5a3cb2d3830c3fef7352b7b116115829
   RCTTypeSafety: 259790fb8b16c94e57e0d3d1e2479e69a2b93f50
@@ -1505,6 +1514,7 @@ SPEC CHECKSUMS:
   react-native-biometrics: 352e5a794bfffc46a0c86725ea7dc62deb085bdc
   react-native-date-picker: 89c419d88fa8e3c5f2d3cbae0bb7f7454ae8ea55
   react-native-document-picker: 495c444c0c773c6e83a5d91165890ecb1c0a399a
+  react-native-razorpay: 0272dd684bc9148828c54a72e05059e3e2e8b813
   react-native-safe-area: e8230b0017d76c00de6b01e2412dcf86b127c6a3
   react-native-safe-area-context: 39c2d8be3328df5d437ac1700f4f3a4f75716acc
   react-native-video: c26780b224543c62d5e1b2a7244a5cd1b50e8253
@@ -1539,6 +1549,6 @@ SPEC CHECKSUMS:
   TouchID: ba4c656d849cceabc2e4eef722dea5e55959ecf4
   Yoga: d6133108734e69e8c0becc6ba587294b94829687
 
-PODFILE CHECKSUM: 29c0e9c8400ef093d648cd66847609aff23c119b
+PODFILE CHECKSUM: 02c0a12a559fd435bb9b432440d8a81f80ac7df8
 
 COCOAPODS: 1.12.0

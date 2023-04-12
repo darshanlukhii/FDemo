@@ -25,6 +25,7 @@ import messaging from '@react-native-firebase/messaging';
 import remoteConfig from '@react-native-firebase/remote-config';
 import analytics from '@react-native-firebase/analytics';
 import crashlytics from '@react-native-firebase/crashlytics';
+import RazorpayCheckout from 'react-native-razorpay';
 
 const Profile = ({navigation}) => {
   const [userOldData, setUserOldData] = useState([]);
@@ -57,45 +58,6 @@ const Profile = ({navigation}) => {
       remote();
     }
   }, [isFocused]);
-
-  const remote = async () => {
-    remoteConfig()
-      .fetchAndActivate()
-      .then(() => {
-        remoteConfig()
-          .fetch(3)
-          .then(() => {
-            firebase
-              .remoteConfig()
-              .activate()
-              .then(activated => {
-                const buttonColor = firebase
-                  .remoteConfig()
-                  .getValue('edit_profile')
-                  .asBoolean();
-                // console.log('Button color:', buttonColor);
-                setButtonColorProfile(buttonColor);
-              });
-          });
-      });
-    // await remoteConfig().setConfigSettings({
-    //   minimumFetchIntervalMillis: 2000,
-    // });
-    // remoteConfig().setDefaults({
-    //   edit_profile: true,
-    // });
-    // remoteConfig()
-    //   .fetchAndActivate()
-    //   .then(() => {
-    //     remoteConfig().fetch(2);
-    //   });
-    // const buttonColor = firebase
-    //   .remoteConfig()
-    //   .getValue('edit_profile')
-    //   .asBoolean();
-    // console.log('Button color:', buttonColor);
-    // setButtonColorProfile(buttonColor);
-  };
 
   const getData = async () => {
     const get = await getUserData();
@@ -449,6 +411,45 @@ const Profile = ({navigation}) => {
       });
   };
 
+  const remote = async () => {
+    remoteConfig()
+      .fetchAndActivate()
+      .then(() => {
+        remoteConfig()
+          .fetch(3)
+          .then(() => {
+            firebase
+              .remoteConfig()
+              .activate()
+              .then(activated => {
+                const buttonColor = firebase
+                  .remoteConfig()
+                  .getValue('edit_profile')
+                  .asBoolean();
+                console.log(`Button color ${userOldData.name}:`, buttonColor);
+                setButtonColorProfile(buttonColor);
+              });
+          });
+      });
+    // await remoteConfig().setConfigSettings({
+    //   minimumFetchIntervalMillis: 2000,
+    // });
+    // remoteConfig().setDefaults({
+    //   edit_profile: true,
+    // });
+    // remoteConfig()
+    //   .fetchAndActivate()
+    //   .then(() => {
+    //     remoteConfig().fetch(2);
+    //   });
+    // const buttonColor = firebase
+    //   .remoteConfig()
+    //   .getValue('edit_profile')
+    //   .asBoolean();
+    // console.log('Button color:', buttonColor);
+    // setButtonColorProfile(buttonColor);
+  };
+
   useEffect(() => {
     crashlytics().log('App mounted.');
     getUserDetails();
@@ -517,12 +518,13 @@ const Profile = ({navigation}) => {
         style={styles.editPictureView}
         onPress={() => {
           setModalVisible(!isModalVisible);
+          // paymentData();
         }}>
-        {/* <Text style={{...styles.editPicture, color: buttonColor}}> */}
+        {/* <Text style={{...styles.editPicture}}> */}
         <Text
           style={[
             styles.editPicture,
-            {color: buttonColorProfile ? '#2F87EC' : 'red'},
+            {color: buttonColorProfile ? 'red' : '#2F87EC'},
           ]}>
           Edit Profile
         </Text>
