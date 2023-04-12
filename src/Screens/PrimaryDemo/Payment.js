@@ -142,6 +142,10 @@ const styles = StyleSheet.create({
     height: hp(27),
     backgroundColor: '#F5F3FD',
     borderRadius: hp(1),
+    shadowOffset: {width: 6, height: 5},
+    shadowColor: '#000',
+    shadowOpacity: 0.2,
+    shadowRadius: 4,
   },
   staterView: {
     height: hp(5),

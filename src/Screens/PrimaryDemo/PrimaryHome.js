@@ -155,7 +155,7 @@ const PrimaryHome = () => {
             aaa => aaa == auth().currentUser.uid,
           );
           return abc === true || current === 0 ? (
-            <View style={{padding: 3}}>
+            <View style={styles.view}>
               <View style={styles.mainStyle}>
                 <View style={styles.userImage}>
                   <Image
@@ -251,7 +251,7 @@ const PrimaryHome = () => {
                   </TouchableOpacity>
                 </View>
               </View>
-              <View style={{...styles.horiLine, marginTop: hp(0)}}></View>
+              {/* <View style={{...styles.horiLine, marginTop: hp(0)}}></View> */}
             </View>
           ) : null;
         }}
@@ -329,6 +329,14 @@ const styles = StyleSheet.create({
   container: {
     flex: 1,
   },
+  view: {
+    padding: wp(1),
+    marginTop: hp(1),
+    shadowOffset: {width: 6, height: 5},
+    shadowColor: '#000',
+    shadowOpacity: 0.3,
+    shadowRadius: 4,
+  },
   mainStyle: {
     backgroundColor: '#B0D8DB',
     borderWidth: 1,
@@ -352,14 +360,14 @@ const styles = StyleSheet.create({
   },
   imageViewStyle: {
     height: hp(24.5),
-    width: wp(91.73),
+    width: wp(90),
     marginLeft: wp(4),
     borderRadius: hp(1.5),
   },
   dataImageStyle: {
     borderRadius: hp(1.5),
     height: hp(24.5),
-    width: wp(91.73),
+    width: wp(90),
   },
   dataCaptionTextStyle: {
     marginTop: hp(1.97),

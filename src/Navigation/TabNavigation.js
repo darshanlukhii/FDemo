@@ -104,8 +104,8 @@ const TabNavigation = () => {
         <Tab.Screen name="PrimaryHome" component={PrimaryHome} />
         <Tab.Screen name="Favourite" component={Favourite} />
         <Tab.Screen name="Event" component={Event} />
-        <Tab.Screen name="Profile" component={Profile} />
         <Tab.Screen name="Payment" component={Payment} />
+        <Tab.Screen name="Profile" component={Profile} />
       </Tab.Navigator>
     </View>
   );

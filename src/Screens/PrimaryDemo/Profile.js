@@ -495,12 +495,11 @@ const Profile = ({navigation}) => {
             await analytics().logEvent(`${userOldData.name}`, {
               id: {
                 user: `${auth().currentUser.uid}`,
-                description: ['Followers Data'],
+                description: 'Followers Data',
               },
             });
             await analytics().logSelectContent({
-              content_type: 'clothing',
-              item_id: 'abcd',
+              content_type: 'Followers Data',
             });
           }}
         />
@@ -512,12 +511,11 @@ const Profile = ({navigation}) => {
             await analytics().logEvent(`${userOldData.name}`, {
               id: {
                 user: `${auth().currentUser.uid}`,
-                description: ['Following Data'],
+                description: 'Following Data',
               },
             });
             await analytics().logSelectContent({
-              content_type: 'clothing',
-              item_id: 'abcd',
+              content_type: 'Following Data',
             });
           }}
         />

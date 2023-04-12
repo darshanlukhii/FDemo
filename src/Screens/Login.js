@@ -74,7 +74,7 @@ const Login = ({navigation}) => {
       // console.log('===============', googleCredential);
       const userinfo = await auth().signInWithCredential(googleCredential);
       // console.log('===============>>>', userinfo);
-      navigation.dispatch(StackActions.replace('Home'));
+      navigation.dispatch(StackActions.replace('Drawers'));
     } catch (err) {
       console.log(err);
     }

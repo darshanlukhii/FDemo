@@ -89,19 +89,6 @@ const CustomDrawer = props => {
           />
           <DrawerItem
             style={{backgroundColor: 'rgba(44, 44, 44, 0.2)'}}
-            label="Profile"
-            icon={() => (
-              <Image
-                style={styles.imageIconStyle}
-                source={imageConstatnt.Profile}
-              />
-            )}
-            onPress={() => {
-              props.navigation.navigate('Profile');
-            }}
-          />
-          <DrawerItem
-            style={{backgroundColor: 'rgba(44, 44, 44, 0.2)'}}
             label="Subscription"
             icon={() => (
               <Image
@@ -111,6 +98,19 @@ const CustomDrawer = props => {
             )}
             onPress={() => {
               props.navigation.navigate('Payment');
+            }}
+          />
+          <DrawerItem
+            style={{backgroundColor: 'rgba(44, 44, 44, 0.2)'}}
+            label="Profile"
+            icon={() => (
+              <Image
+                style={styles.imageIconStyle}
+                source={imageConstatnt.Profile}
+              />
+            )}
+            onPress={() => {
+              props.navigation.navigate('Profile');
             }}
           />
         </DrawerContentScrollView>
