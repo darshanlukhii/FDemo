@@ -133,9 +133,9 @@ const PrimaryHome = () => {
     }
   };
 
-  const deleteData = (key) => {
-    const itemRef = firestore().collection('usersPost').doc(`${key}`).delete()
-  }
+  const deleteData = key => {
+    const itemRef = firestore().collection('usersPost').doc(`${key}`).delete();
+  };
 
   return (
     <View style={styles.container}>
