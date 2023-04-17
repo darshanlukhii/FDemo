@@ -72,7 +72,6 @@ const Navigation = () => {
         <Stack.Screen name="ApiCalling" component={ApiCalling} />
         <Stack.Screen name="DemoApi" component={DemoApi} />
         <Stack.Screen name="ApiApi" component={ApiApi} />
-        <Stack.Screen name="FirebaseDemo" component={FirebaseDemo} />
         <Stack.Screen name="Firestore" component={Firestore} /> */}
       </Stack.Navigator>
     </NavigationContainer>

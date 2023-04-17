@@ -871,7 +871,6 @@ const Profile = ({navigation}) => {
             renderItem={({item}) => {
               let visibility;
               if (item?.Following) {
-                console.log();
                 // visibility = item?.Followers?.filter(a => {});
               }
               // console.log('-------', abc);
