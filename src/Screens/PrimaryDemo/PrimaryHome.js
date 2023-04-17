@@ -133,6 +133,10 @@ const PrimaryHome = () => {
     }
   };
 
+  const deleteData = (key) => {
+    const itemRef = firestore().collection('usersPost').doc(`${key}`).delete()
+  }
+
   return (
     <View style={styles.container}>
       <Header
@@ -242,7 +246,7 @@ const PrimaryHome = () => {
                   <TouchableOpacity
                     style={styles.barViewStyle}
                     onPress={() => {
-                      // deleteData(item.key);
+                      deleteData(item.key);
                     }}>
                     <Image
                       source={imageConstatnt.bar}
