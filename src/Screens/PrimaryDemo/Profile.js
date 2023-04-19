@@ -25,7 +25,6 @@ import messaging from '@react-native-firebase/messaging';
 import remoteConfig from '@react-native-firebase/remote-config';
 import analytics from '@react-native-firebase/analytics';
 import crashlytics from '@react-native-firebase/crashlytics';
-import RazorpayCheckout from 'react-native-razorpay';
 
 const Profile = ({navigation}) => {
   const [userOldData, setUserOldData] = useState([]);

@@ -35,6 +35,16 @@
 	</array>
 	<key>CFBundleVersion</key>
 	<string>1</string>
+	  
+    <key>NSCameraUsageDescription</key>
+     <string>This app requires access to the camera.</string>
+	<key>NSPhotoLibraryUsageDescription</key>
+    <string>My description about why I need this capability</string>
+	<key>NSContactsUsageDescription</key>                   <!-- ADDED  -->
+    <string>Apps Wants To Contacts Access</string>          <!-- ADDED  -->
+	<key>NSSiriUsageDescription</key>
+    <string>My description about why I need this capability</string>
+
 	<key>LSRequiresIPhoneOS</key>
 	<true/>
 	<key>NSAppTransportSecurity</key>

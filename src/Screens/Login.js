@@ -67,13 +67,9 @@ const Login = ({navigation}) => {
   const googleLogin = async () => {
     try {
       const google = await GoogleSignin.hasPlayServices();
-      // console.log('google ---> ', google);
       const {idToken} = await GoogleSignin.signIn();
-      // console.log('---------------', idToken);
       const googleCredential = auth.GoogleAuthProvider.credential(idToken);
-      // console.log('===============', googleCredential);
       const userinfo = await auth().signInWithCredential(googleCredential);
-      // console.log('===============>>>', userinfo);
       navigation.dispatch(StackActions.replace('Drawers'));
     } catch (err) {
       console.log(err);
@@ -109,7 +105,6 @@ const Login = ({navigation}) => {
         </View>
         <View
           style={{
-            // borderWidth: 1,
             alignSelf: 'flex-end',
             marginRight: hp(7),
           }}>
@@ -130,7 +125,7 @@ const Login = ({navigation}) => {
           </TouchableOpacity>
         </View>
 
-        <View style={{marginTop: hp(30)}}>
+        <View style={{marginTop: hp(27)}}>
           <Btn
             bgColor="#000"
             textColor="#fff"
@@ -186,7 +181,6 @@ const styles = StyleSheet.create({
   container: {
     flex: 1,
     backgroundColor: '#e1ebea',
-    // alignItems: 'center',
   },
   downView: {
     display: 'flex',
@@ -205,7 +199,6 @@ const styles = StyleSheet.create({
     flexDirection: 'row',
     justifyContent: 'space-around',
     width: wp(60),
-    // borderWidth: 1,
   },
 });
 

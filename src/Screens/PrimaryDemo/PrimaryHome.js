@@ -19,6 +19,15 @@ import {imageConstatnt} from '../../helper/imageConstatnt';
 import {useIsFocused, useNavigation} from '@react-navigation/native';
 import {getDataBase, getUserData} from '../../Component/GetData';
 import ReactNativeModal from 'react-native-modal';
+import {
+  check,
+  request,
+  PERMISSIONS,
+  RESULTS,
+  checkNotifications,
+  requestNotifications,
+  requestMultiple,
+} from 'react-native-permissions';
 
 const PrimaryHome = () => {
   const [data, setData] = useState([]);
@@ -33,8 +42,22 @@ const PrimaryHome = () => {
     if (isFocused) {
       getData();
       getUser();
+      askForPermissions();
     }
   }, [isFocused]);
+
+  const askForPermissions = () => {
+    requestMultiple([PERMISSIONS.IOS.CAMERA, PERMISSIONS.IOS.CONTACTS]).then(
+      statuses => {
+        console.log('Camera', statuses[PERMISSIONS.IOS.CAMERA]);
+        console.log('CONTACTS', statuses[PERMISSIONS.IOS.CONTACTS]);
+      },
+    );
+
+    // request(PERMISSIONS.IOS.MEDIA_LIBRARY).then(result => {
+    //   console.log(result);
+    // });
+  };
 
   const getUser = async () => {
     const get = await getUserData();

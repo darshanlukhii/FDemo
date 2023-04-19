@@ -49,4 +49,6 @@ export const imageConstatnt = {
   payment: require('../assets/images/payment.png'),
   starter: require('../assets/images/starter.png'),
   pro: require('../assets/images/pro.png'),
+  newMoon: require('../assets/images/new-moon.png'),
+  finger: require('../assets/images/middle-finger.png'),
 };

@@ -7,7 +7,8 @@
     "ios": "react-native run-ios",
     "start": "react-native start",
     "test": "jest",
-    "lint": "eslint ."
+    "lint": "eslint .",
+    "postinstall": "react-native setup-ios-permissions && pod-install"
   },
   "dependencies": {
     "@react-native-async-storage/async-storage": "^1.17.11",
@@ -42,6 +43,7 @@
     "react-native-linear-gradient": "^2.6.2",
     "react-native-modal": "^13.0.1",
     "react-native-modal-datetime-picker": "^14.0.1",
+    "react-native-permissions": "^3.8.0",
     "react-native-push-notification": "^8.1.1",
     "react-native-razorpay": "^2.3.0",
     "react-native-reanimated": "^3.0.2",
@@ -61,6 +63,27 @@
     "run-ios": "^0.4.0",
     "yarn": "^1.22.19"
   },
+  "reactNativePermissionsIOS": [
+    "AppTrackingTransparency",
+    "BluetoothPeripheral",
+    "Calendars",
+    "Camera",
+    "Contacts",
+    "FaceID",
+    "LocationAccuracy",
+    "LocationAlways",
+    "LocationWhenInUse",
+    "MediaLibrary",
+    "Microphone",
+    "Motion",
+    "Notifications",
+    "PhotoLibrary",
+    "PhotoLibraryAddOnly",
+    "Reminders",
+    "Siri",
+    "SpeechRecognition",
+    "StoreKit"
+  ],
   "devDependencies": {
     "@babel/core": "^7.12.9",
     "@babel/runtime": "^7.12.5",

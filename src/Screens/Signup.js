@@ -83,13 +83,9 @@ const Signup = ({navigation}) => {
   const googleLogin = async () => {
     try {
       const google = await GoogleSignin.hasPlayServices();
-      // console.log('google ---> ', google);
       const {idToken} = await GoogleSignin.signIn();
-      // console.log('---------------', idToken);
       const googleCredential = auth.GoogleAuthProvider.credential(idToken);
-      // console.log('===============', googleCredential);
       const userinfo = await auth().signInWithCredential(googleCredential);
-      // console.log('===============>>>', userinfo);
       navigation.dispatch(StackActions.replace('Drawers'));
     } catch (err) {
       console.log(err);
@@ -193,7 +189,7 @@ const Signup = ({navigation}) => {
             />
           )}
         </TouchableOpacity>
-        <View style={{alignSelf: 'center', marginTop: hp(7)}}>
+        <View style={{alignSelf: 'center', marginTop: hp(4)}}>
           <Field
             placeholder="Enter Your name ..."
             value={name}
@@ -212,7 +208,7 @@ const Signup = ({navigation}) => {
           />
         </View>
 
-        <View style={{marginTop: hp(15), alignSelf: 'center'}}>
+        <View style={{marginTop: hp(14.5), alignSelf: 'center'}}>
           <Btn
             bgColor="#000"
             textColor="#fff"
