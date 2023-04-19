@@ -5,6 +5,7 @@ platform :ios, '12.4'
 install! 'cocoapods', :deterministic_uuids => false
 
 $RNFirebaseAsStaticFramework = true
+$RNGoogleMobileAdsAsStaticFramework = true
 target 'FDemo' do
   config = use_native_modules!
 

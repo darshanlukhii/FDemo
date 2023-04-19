@@ -28,6 +28,13 @@ import {
   requestNotifications,
   requestMultiple,
 } from 'react-native-permissions';
+import {
+  AdEventType,
+  BannerAd,
+  BannerAdSize,
+  InterstitialAd,
+  TestIds,
+} from 'react-native-google-mobile-ads';
 
 const PrimaryHome = () => {
   const [data, setData] = useState([]);
@@ -38,19 +45,40 @@ const PrimaryHome = () => {
   const isFocused = useIsFocused();
   const {navigate} = useNavigation();
 
+  const ADS = TestIds.INTERSTITIAL;
+
+  const interstitial = InterstitialAd.createForAdRequest(ADS, {
+    requestNonPersonalizedAdsOnly: true,
+    keywords: ['fashion', 'mobile', 'clothing'],
+  });
+
   useEffect(() => {
     if (isFocused) {
       getData();
       getUser();
       askForPermissions();
+      adEvent();
     }
   }, [isFocused]);
+
+  const adEvent = () => {
+    const unsubscribe = interstitial.addAdEventListener(
+      AdEventType.LOADED,
+      () => {
+        interstitial.show();
+      },
+    );
+    // Start loading the interstitial straight away
+    interstitial.load();
+    // Unsubscribe from events on unmount
+    return unsubscribe;
+  };
 
   const askForPermissions = () => {
     requestMultiple([PERMISSIONS.IOS.CAMERA, PERMISSIONS.IOS.CONTACTS]).then(
       statuses => {
-        console.log('Camera', statuses[PERMISSIONS.IOS.CAMERA]);
-        console.log('CONTACTS', statuses[PERMISSIONS.IOS.CONTACTS]);
+        // console.log('Camera', statuses[PERMISSIONS.IOS.CAMERA]);
+        // console.log('CONTACTS', statuses[PERMISSIONS.IOS.CONTACTS]);
       },
     );
 
@@ -168,6 +196,13 @@ const PrimaryHome = () => {
         source={imageConstatnt.messages}
         onPress={() => navigate('ChatList')}
       />
+      {/* <BannerAd
+        unitId={TestIds.BANNER}
+        size={BannerAdSize.FULL_BANNER}
+        requestOptions={{
+          requestNonPersonalizedAdsOnly: true,
+        }}
+      /> */}
       <FlatList
         data={data}
         keyExtractor={data => data.key}

@@ -25,6 +25,12 @@ import messaging from '@react-native-firebase/messaging';
 import remoteConfig from '@react-native-firebase/remote-config';
 import analytics from '@react-native-firebase/analytics';
 import crashlytics from '@react-native-firebase/crashlytics';
+import {
+  InterstitialAd,
+  RewardedAd,
+  RewardedAdEventType,
+  TestIds,
+} from 'react-native-google-mobile-ads';
 
 const Profile = ({navigation}) => {
   const [userOldData, setUserOldData] = useState([]);
@@ -47,6 +53,13 @@ const Profile = ({navigation}) => {
   const {navigate} = useNavigation();
   const [buttonColorProfile, setButtonColorProfile] = useState();
 
+  const ADS = TestIds.REWARDED;
+
+  const rewarded = RewardedAd.createForAdRequest(ADS, {
+    requestNonPersonalizedAdsOnly: true,
+    keywords: ['fashion', 'mobile', 'clothing'],
+  });
+
   useEffect(() => {
     if (isFocused) {
       getData();
@@ -55,8 +68,31 @@ const Profile = ({navigation}) => {
       // getFCMToken();
       // notification();
       remote();
+      adEvent();
     }
   }, [isFocused]);
+
+  const adEvent = () => {
+    const unsubscribeLoaded = rewarded.addAdEventListener(
+      RewardedAdEventType.LOADED,
+      () => {
+        rewarded.show();
+      },
+    );
+    const unsubscribeEarned = rewarded.addAdEventListener(
+      RewardedAdEventType.EARNED_REWARD,
+      reward => {
+        console.log('User earned reward of ', reward);
+      },
+    );
+    // Start loading the rewarded ad straight away
+    rewarded.load();
+    // Unsubscribe from events on unmount
+    return () => {
+      unsubscribeLoaded();
+      unsubscribeEarned();
+    };
+  };
 
   const getData = async () => {
     const get = await getUserData();
