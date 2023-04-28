@@ -25,6 +25,11 @@ import Favourite from '../Screens/PrimaryDemo/Favourite';
 import Profile from '../Screens/PrimaryDemo/Profile';
 import ChatList from '../Screens/PrimaryDemo/ChatList';
 import analytics from '@react-native-firebase/analytics';
+import Ani from '../../src/Screens/Ani'
+import AnimatedButton from '../Screens/Animation/AnimatedButton';
+import AnimationWithLibrary from '../Screens/Animation/AnimationWithLibrary';
+import Progress from '../Screens/Animation/Progress';
+import Circle from '../Screens/Animation/Circle';
 
 const Navigation = () => {
   const routeNameRef = useRef();
@@ -55,11 +60,11 @@ const Navigation = () => {
           headerTintColor: '#FFFFFF',
           headerStyle: {backgroundColor: '#7d5fff'},
         }}>
-        <Stack.Screen name="Splash" component={Splash} />
+        {/* <Stack.Screen name="Splash" component={Splash} />
         <Stack.Screen name="Login" component={Login} />
         <Stack.Screen name="Signup" component={Signup} />
         <Stack.Screen name="Drawers" component={Drawers} />
-        <Stack.Screen name="ChatList" component={ChatList} />
+        <Stack.Screen name="ChatList" component={ChatList} /> */}
         {/* <Stack.Screen name="Home" component={Home} />
         <Stack.Screen name="mobileverification" component={MoblieVerify} />
         <Stack.Screen name="RealTimeDataBase" component={RealTimeDataBase} />
@@ -72,7 +77,11 @@ const Navigation = () => {
         <Stack.Screen name="ApiCalling" component={ApiCalling} />
         <Stack.Screen name="DemoApi" component={DemoApi} />
         <Stack.Screen name="ApiApi" component={ApiApi} />
-        <Stack.Screen name="Firestore" component={Firestore} /> */}
+      <Stack.Screen name="Firestore" component={Firestore} /> */}
+      <Stack.Screen name="Circle" component={Circle} /> 
+      <Stack.Screen name="Ani" component={Ani} /> 
+      <Stack.Screen name="Progress" component={Progress} /> 
+      <Stack.Screen name="AnimationWithLibrary" component={AnimationWithLibrary} /> 
       </Stack.Navigator>
     </NavigationContainer>
   );

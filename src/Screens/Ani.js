@@ -1,3 +1,52 @@
+import React, { Component } from 'react';
+import { View, Text, StyleSheet, Animated, SafeAreaView, PanResponder } from 'react-native';
+
+const Ani = () => {
+    const position = new Animated.ValueXY({x: 0, y: 0})
+    // Animated.spring(position,{
+    //     toValue: {x: 100, y: 100},
+    //     duration: 2000,
+    //     // speed:2,
+    //     // bounciness:40,
+    //     useNativeDriver: true,
+    // }).start()
+
+    const pan = PanResponder.create({
+        onMoveShouldSetPanResponder: () => true, 
+        onPanResponderMove: Animated.event([ 
+            null, 
+            {dx: position.x, dy: position.y}
+        ]), 
+        onPanResponderRelease:() => {
+            // position.setValue({x:0, y:0});
+            Animated.spring(position,{
+                toValue:{x:0, y:0},
+                useNativeDriver: true,
+                bounciness:20
+            }).start()
+        }
+    })
+
+    const rotate = position.x.interpolate({
+        inputRange: [0, 10], outputRange: ['0deg', '90deg'],
+    })
+
+    return (
+        <SafeAreaView style={{flex:1, justifyContent:'center', alignItems:'center'}}>
+            <Animated.View {...pan.panHandlers} style={{height:100, width:100, borderWidth:1, alignItems:'center', justifyContent:'center', backgroundColor:'red', 
+            transform:[
+                {translateX: position.x}, {translateY: position.y}, {rotate:rotate}
+            ]}}>
+                <Text>Animation</Text>
+            </Animated.View>
+        </SafeAreaView>
+    );
+};
+
+const styles = StyleSheet.create({});
+
+export default Ani;
+
 // import React, {useState, useEffect} from 'react';
 // import {View, Text, StyleSheet, Animated} from 'react-native';
 
