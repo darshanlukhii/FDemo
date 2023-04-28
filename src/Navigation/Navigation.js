@@ -60,11 +60,11 @@ const Navigation = () => {
           headerTintColor: '#FFFFFF',
           headerStyle: {backgroundColor: '#7d5fff'},
         }}>
-        {/* <Stack.Screen name="Splash" component={Splash} />
+        <Stack.Screen name="Splash" component={Splash} />
         <Stack.Screen name="Login" component={Login} />
         <Stack.Screen name="Signup" component={Signup} />
         <Stack.Screen name="Drawers" component={Drawers} />
-        <Stack.Screen name="ChatList" component={ChatList} /> */}
+        <Stack.Screen name="ChatList" component={ChatList} />
         {/* <Stack.Screen name="Home" component={Home} />
         <Stack.Screen name="mobileverification" component={MoblieVerify} />
         <Stack.Screen name="RealTimeDataBase" component={RealTimeDataBase} />
@@ -78,10 +78,10 @@ const Navigation = () => {
         <Stack.Screen name="DemoApi" component={DemoApi} />
         <Stack.Screen name="ApiApi" component={ApiApi} />
       <Stack.Screen name="Firestore" component={Firestore} /> */}
-      <Stack.Screen name="Circle" component={Circle} /> 
+      {/* <Stack.Screen name="Circle" component={Circle} /> 
       <Stack.Screen name="Ani" component={Ani} /> 
       <Stack.Screen name="Progress" component={Progress} /> 
-      <Stack.Screen name="AnimationWithLibrary" component={AnimationWithLibrary} /> 
+      <Stack.Screen name="AnimationWithLibrary" component={AnimationWithLibrary} />  */}
       </Stack.Navigator>
     </NavigationContainer>
   );

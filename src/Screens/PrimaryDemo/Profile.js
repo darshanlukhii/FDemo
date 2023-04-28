@@ -983,7 +983,6 @@ const styles = StyleSheet.create({
     fontSize: fontSize(17),
     fontWeight: '600',
     color: '#003333',
-    fontVariant: ['small-caps'],
   },
   editPictureView: {
     alignSelf: 'center',
