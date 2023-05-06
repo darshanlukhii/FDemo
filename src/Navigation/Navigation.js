@@ -30,6 +30,7 @@ import AnimatedButton from '../Screens/Animation/AnimatedButton';
 import AnimationWithLibrary from '../Screens/Animation/AnimationWithLibrary';
 import Progress from '../Screens/Animation/Progress';
 import Circle from '../Screens/Animation/Circle';
+import WebView_1 from '../Screens/WebView_1';
 
 const Navigation = () => {
   const routeNameRef = useRef();
@@ -65,6 +66,7 @@ const Navigation = () => {
         <Stack.Screen name="Signup" component={Signup} />
         <Stack.Screen name="Drawers" component={Drawers} />
         <Stack.Screen name="ChatList" component={ChatList} />
+        <Stack.Screen name="WebView_1" component={WebView_1} />
         {/* <Stack.Screen name="Home" component={Home} />
         <Stack.Screen name="mobileverification" component={MoblieVerify} />
         <Stack.Screen name="RealTimeDataBase" component={RealTimeDataBase} />

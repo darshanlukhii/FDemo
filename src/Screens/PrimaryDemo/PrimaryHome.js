@@ -8,6 +8,7 @@ import {
   TouchableOpacity,
   SafeAreaView,
   TextInput,
+  ActivityIndicator,
 } from 'react-native';
 import Header from '../../Component/Header';
 import firestore, {firebase} from '@react-native-firebase/firestore';
@@ -19,15 +20,7 @@ import {imageConstatnt} from '../../helper/imageConstatnt';
 import {useIsFocused, useNavigation} from '@react-navigation/native';
 import {getDataBase, getUserData} from '../../Component/GetData';
 import ReactNativeModal from 'react-native-modal';
-import {
-  check,
-  request,
-  PERMISSIONS,
-  RESULTS,
-  checkNotifications,
-  requestNotifications,
-  requestMultiple,
-} from 'react-native-permissions';
+import {PERMISSIONS, requestMultiple} from 'react-native-permissions';
 import {
   AdEventType,
   BannerAd,
@@ -35,8 +28,11 @@ import {
   InterstitialAd,
   TestIds,
 } from 'react-native-google-mobile-ads';
+import WebView from 'react-native-webview';
 
-const PrimaryHome = () => {
+
+
+const PrimaryHome = ({navigation}) => {
   const [data, setData] = useState([]);
   const [commentData, setCommentData] = useState([]);
   const [userOldData, setUserOldData] = useState([]);
@@ -44,6 +40,7 @@ const PrimaryHome = () => {
   const [commentText, setCommentText] = useState('');
   const isFocused = useIsFocused();
   const {navigate} = useNavigation();
+  const [isLoading, setIsLoading] = useState(true);
 
   const ADS = TestIds.INTERSTITIAL;
 
@@ -108,6 +105,7 @@ const PrimaryHome = () => {
           });
           setData(users);
         });
+      setIsLoading(false);
     } catch (error) {
       console.log(error);
     }
@@ -194,130 +192,132 @@ const PrimaryHome = () => {
         text={'Home'}
         isTrue={true}
         source={imageConstatnt.messages}
-        onPress={() => navigate('ChatList')}
-      />
-      {/* <BannerAd
-        unitId={TestIds.BANNER}
-        size={BannerAdSize.FULL_BANNER}
-        requestOptions={{
-          requestNonPersonalizedAdsOnly: true,
+        onPress={() => {
+          const uri = 'https://www.finology.in/'
+          navigation.navigate('WebView_1', uri)
         }}
-      /> */}
-      <FlatList
-        data={data}
-        keyExtractor={data => data.key}
-        bounces={false}
-        renderItem={({item}) => {
-          const abc = userOldData?.Following?.some(c => {
-            return c === item?.PostId;
-          });
-          const current = item?.PostId?.localeCompare(auth().currentUser.uid);
-          const i = item?.PostBookMark.some(i => i == auth().currentUser.uid);
-          const like = item?.PostLike.some(
-            aaa => aaa == auth().currentUser.uid,
-          );
-          return abc === true || current === 0 ? (
-            <View style={styles.view}>
-              <View style={styles.mainStyle}>
-                <View style={styles.userImage}>
-                  <Image
-                    source={{uri: item?.PostUserImageUrI}}
-                    style={styles.userIdImage}
-                  />
-                  <Text style={styles.userIdName}>{item?.PostName}</Text>
-                </View>
-                {item?.PostImg ? (
-                  item?.PostType === 'image/jpeg' ? (
-                    <View style={styles.imageViewStyle}>
+      />
+      {isLoading ? (
+        <View style={styles.loaderStyle}>
+          <ActivityIndicator size="large" color="#0000ff" />
+        </View>
+      ) : (
+        <FlatList
+          data={data}
+          keyExtractor={data => data.key}
+          bounces={false}
+          renderItem={({item}) => {
+            const abc = userOldData?.Following?.some(c => {
+              return c === item?.PostId;
+            });
+            const current = item?.PostId?.localeCompare(auth().currentUser.uid);
+            const i = item?.PostBookMark.some(i => i == auth().currentUser.uid);
+            const like = item?.PostLike.some(
+              aaa => aaa == auth().currentUser.uid,
+            );
+            return abc === true || current === 0 ? (
+              <View style={styles.view}>
+                <View style={styles.mainStyle}>
+                  <View style={styles.userImage}>
+                    <Image
+                      source={{uri: item?.PostUserImageUrI}}
+                      style={styles.userIdImage}
+                    />
+                    <Text style={styles.userIdName}>{item?.PostName}</Text>
+                  </View>
+                  {item?.PostImg ? (
+                    item?.PostType === 'image/jpeg' ? (
+                      <View style={styles.imageViewStyle}>
+                        <Image
+                          style={styles.dataImageStyle}
+                          source={{uri: item?.PostImg}}
+                        />
+                      </View>
+                    ) : (
+                      <View style={styles.imageViewStyle}>
+                        <VideoPlayer
+                          video={{uri: item?.PostImg}}
+                          style={styles.dataImageStyle}
+                        />
+                      </View>
+                    )
+                  ) : null}
+                  {!item?.Comment ? null : (
+                    <Text style={styles.dataCaptionTextStyle}>
+                      {JSON.parse(item?.Comment[0]).CommentText}
+                    </Text>
+                  )}
+                  <Text style={styles.postedTextStyle}>
+                    Posted on {moment(item?.PostTime.toDate()).fromNow()}
+                  </Text>
+
+                  {/* <View style={styles.lineStyle} numberOfLines={1}></View> */}
+
+                  <View style={styles.userLikeView}>
+                    <TouchableOpacity
+                      onPress={() => {
+                        likeNumber(item);
+                      }}>
                       <Image
-                        style={styles.dataImageStyle}
-                        source={{uri: item?.PostImg}}
+                        source={
+                          like == false
+                            ? imageConstatnt.like
+                            : imageConstatnt.likeHeart
+                        }
+                        style={styles.likeImageStyle}
                       />
-                    </View>
-                  ) : (
-                    <View style={styles.imageViewStyle}>
-                      <VideoPlayer
-                        video={{uri: item?.PostImg}}
-                        style={styles.dataImageStyle}
+                    </TouchableOpacity>
+                    <Text style={styles.likeNumberTextStyle}>
+                      {item?.PostLike.length}
+                    </Text>
+                    <TouchableOpacity
+                      onPress={() => {
+                        setCommentData(item);
+                        setModalVisible(!isModalVisible);
+                      }}>
+                      <Image
+                        source={imageConstatnt.message}
+                        style={styles.messageImageView}
                       />
-                    </View>
-                  )
-                ) : null}
-                {!item?.Comment ? null : (
-                  <Text style={styles.dataCaptionTextStyle}>
-                    {JSON.parse(item?.Comment[0]).CommentText}
-                  </Text>
-                )}
-                <Text style={styles.postedTextStyle}>
-                  Posted on {moment(item?.PostTime.toDate()).fromNow()}
-                </Text>
-
-                {/* <View style={styles.lineStyle} numberOfLines={1}></View> */}
-
-                <View style={styles.userLikeView}>
-                  <TouchableOpacity
-                    onPress={() => {
-                      likeNumber(item);
-                    }}>
-                    <Image
-                      source={
-                        like == false
-                          ? imageConstatnt.like
-                          : imageConstatnt.likeHeart
-                      }
-                      style={styles.likeImageStyle}
-                    />
-                  </TouchableOpacity>
-                  <Text style={styles.likeNumberTextStyle}>
-                    {item?.PostLike.length}
-                  </Text>
-                  <TouchableOpacity
-                    onPress={() => {
-                      setCommentData(item);
-                      setModalVisible(!isModalVisible);
-                    }}>
-                    <Image
-                      source={imageConstatnt.message}
-                      style={styles.messageImageView}
-                    />
-                  </TouchableOpacity>
-                  <Text
-                    style={{
-                      ...styles.likeNumberTextStyle,
-                      marginLeft: wp(2.93),
-                    }}>
-                    {item.Comment.length}
-                  </Text>
-                  <TouchableOpacity
-                    onPress={() => {
-                      bookmark(item);
-                    }}>
-                    <Image
-                      source={
-                        i == false
-                          ? imageConstatnt?.bookmark
-                          : imageConstatnt?.bookmarkTab
-                      }
-                      style={styles.messageImageView}
-                    />
-                  </TouchableOpacity>
-                  <TouchableOpacity
-                    style={styles.barViewStyle}
-                    onPress={() => {
-                      deleteData(item.key);
-                    }}>
-                    <Image
-                      source={imageConstatnt.bar}
-                      style={styles.barStyle}
-                    />
-                  </TouchableOpacity>
+                    </TouchableOpacity>
+                    <Text
+                      style={{
+                        ...styles.likeNumberTextStyle,
+                        marginLeft: wp(2.93),
+                      }}>
+                      {item.Comment.length}
+                    </Text>
+                    <TouchableOpacity
+                      onPress={() => {
+                        bookmark(item);
+                      }}>
+                      <Image
+                        source={
+                          i == false
+                            ? imageConstatnt?.bookmark
+                            : imageConstatnt?.bookmarkTab
+                        }
+                        style={styles.messageImageView}
+                      />
+                    </TouchableOpacity>
+                    <TouchableOpacity
+                      style={styles.barViewStyle}
+                      onPress={() => {
+                        deleteData(item.key);
+                      }}>
+                      <Image
+                        source={imageConstatnt.bar}
+                        style={styles.barStyle}
+                      />
+                    </TouchableOpacity>
+                  </View>
                 </View>
+                {/* <View style={{...styles.horiLine, marginTop: hp(0)}}></View> */}
               </View>
-              {/* <View style={{...styles.horiLine, marginTop: hp(0)}}></View> */}
-            </View>
-          ) : null;
-        }}
-      />
+            ) : null;
+          }}
+        />
+      )}
       <ReactNativeModal
         animationIn={'slideInRight'}
         // animationInTiming={500}
@@ -390,6 +390,11 @@ const PrimaryHome = () => {
 const styles = StyleSheet.create({
   container: {
     flex: 1,
+  },
+  loaderStyle: {
+    flex: 1,
+    justifyContent: 'center',
+    alignItems: 'center',
   },
   view: {
     padding: wp(1),
