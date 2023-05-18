@@ -1,4 +1,4 @@
-import React, {Component, useEffect, useState} from 'react';
+import React, {useEffect, useState} from 'react';
 import {
   View,
   Text,
@@ -30,8 +30,6 @@ import {
 } from 'react-native-google-mobile-ads';
 import WebView from 'react-native-webview';
 
-
-
 const PrimaryHome = ({navigation}) => {
   const [data, setData] = useState([]);
   const [commentData, setCommentData] = useState([]);
@@ -40,7 +38,7 @@ const PrimaryHome = ({navigation}) => {
   const [commentText, setCommentText] = useState('');
   const isFocused = useIsFocused();
   const {navigate} = useNavigation();
-  const [isLoading, setIsLoading] = useState(true);
+  const [isLoading, setIsLoading] = useState(false);
 
   const ADS = TestIds.INTERSTITIAL;
 
@@ -54,7 +52,7 @@ const PrimaryHome = ({navigation}) => {
       getData();
       getUser();
       askForPermissions();
-      adEvent();
+      // adEvent();
     }
   }, [isFocused]);
 
@@ -90,6 +88,7 @@ const PrimaryHome = ({navigation}) => {
   };
 
   const getData = () => {
+    setIsLoading(true);
     try {
       firestore()
         .collection('usersPost')
@@ -104,8 +103,8 @@ const PrimaryHome = ({navigation}) => {
             });
           });
           setData(users);
+          setIsLoading(false);
         });
-      setIsLoading(false);
     } catch (error) {
       console.log(error);
     }
@@ -193,13 +192,13 @@ const PrimaryHome = ({navigation}) => {
         isTrue={true}
         source={imageConstatnt.messages}
         onPress={() => {
-          const uri = 'https://www.finology.in/'
-          navigation.navigate('WebView_1', uri)
+          const uri = 'https://www.finology.in/';
+          navigation.navigate('WebView_1', uri);
         }}
       />
       {isLoading ? (
         <View style={styles.loaderStyle}>
-          <ActivityIndicator size="large" color="#0000ff" />
+          <ActivityIndicator size="large" color="#0000ff" visi />
         </View>
       ) : (
         <FlatList

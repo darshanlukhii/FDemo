@@ -52,7 +52,6 @@ const FirebaseDemo = ({navigation}) => {
         copyTo: 'cachesDirectory',
       });
       setImageVideoData(res);
-      console.log('---------->', res);
       Alert.alert('Image Selected Successfully');
     } catch (err) {
       console.log(err);
@@ -119,7 +118,6 @@ const FirebaseDemo = ({navigation}) => {
               key: documentSnapshot.id,
             });
           });
-          console.log('Post ---->', users);
           setUsers(users);
         });
     } catch (error) {

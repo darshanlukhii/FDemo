@@ -68,7 +68,7 @@ const Profile = ({navigation}) => {
       // getFCMToken();
       // notification();
       remote();
-      adEvent();
+      // adEvent();
     }
   }, [isFocused]);
 
@@ -263,11 +263,6 @@ const Profile = ({navigation}) => {
           Following: firebase.firestore.FieldValue.arrayUnion(currentUserId),
         });
       }
-      // else {
-      //   ref.update({
-      //     Following: firebase.firestore.FieldValue.arrayRemove(currentUserId),
-      //   });
-      // }
       getData();
     } catch (error) {
       console.log(error);
@@ -278,11 +273,6 @@ const Profile = ({navigation}) => {
           Followers: firebase.firestore.FieldValue.arrayUnion(item?.id),
         });
       }
-      // else {
-      //   itemRef.update({
-      //     Followers: firebase.firestore.FieldValue.arrayRemove(item?.id),
-      //   });
-      // }
       getData();
     } catch (error) {
       console.log(error);

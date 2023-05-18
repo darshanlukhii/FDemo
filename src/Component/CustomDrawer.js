@@ -49,12 +49,14 @@ const CustomDrawer = props => {
       <View style={{flex: 1}}>
         <DrawerContentScrollView {...props}>
           <DrawerItem
-            style={{backgroundColor: 'rgba(44, 44, 44, 0.2)'}}
+            style={{
+              marginTop: hp(1.5),
+            }}
             label="Home"
             icon={() => (
               <Image
                 style={styles.imageIconStyle}
-                source={imageConstatnt.PrimaryHome}
+                source={imageConstatnt.drawerHome}
               />
             )}
             onPress={() => {
@@ -62,12 +64,11 @@ const CustomDrawer = props => {
             }}
           />
           <DrawerItem
-            style={{backgroundColor: 'rgba(44, 44, 44, 0.2)'}}
             label="Favourite"
             icon={() => (
               <Image
                 style={styles.imageIconStyle}
-                source={imageConstatnt.bookmark}
+                source={imageConstatnt.drawerBookmark}
               />
             )}
             onPress={() => {
@@ -75,12 +76,11 @@ const CustomDrawer = props => {
             }}
           />
           <DrawerItem
-            style={{backgroundColor: 'rgba(44, 44, 44, 0.2)'}}
             label="Event"
             icon={() => (
               <Image
                 style={styles.imageIconStyle}
-                source={imageConstatnt.Post}
+                source={imageConstatnt.drawerEvent}
               />
             )}
             onPress={() => {
@@ -88,12 +88,11 @@ const CustomDrawer = props => {
             }}
           />
           <DrawerItem
-            style={{backgroundColor: 'rgba(44, 44, 44, 0.2)'}}
             label="Subscription"
             icon={() => (
               <Image
                 style={styles.imageIconStyle}
-                source={imageConstatnt.payment}
+                source={imageConstatnt.drawerSubscription}
               />
             )}
             onPress={() => {
@@ -101,12 +100,11 @@ const CustomDrawer = props => {
             }}
           />
           <DrawerItem
-            style={{backgroundColor: 'rgba(44, 44, 44, 0.2)'}}
             label="Profile"
             icon={() => (
               <Image
                 style={styles.imageIconStyle}
-                source={imageConstatnt.Profile}
+                source={imageConstatnt.drawerProfile}
               />
             )}
             onPress={() => {
@@ -117,21 +115,19 @@ const CustomDrawer = props => {
       </View>
       <DrawerItem
         style={{
-          backgroundColor: 'rgba(44, 44, 44, 0.2)',
           marginBottom: 30,
           justifyContent: 'flex-end',
         }}
         label="Logout"
         icon={() => (
           <Image
-            style={{height: 20, width: 20}}
-            // source={require('../assets/icon/logout.png')}
+            style={styles.imageIconStyle}
+            source={imageConstatnt.drawerLogout}
           />
         )}
         onPress={async () => {
           await auth().signOut();
           Alert.alert('Your Account is Remove...');
-          // navigation.navigate('Login');
           props.navigation.dispatch(StackActions.replace('Login'));
         }}
       />
@@ -147,7 +143,7 @@ const styles = StyleSheet.create({
     backgroundColor: '#2c3e50',
   },
   primaryStyle: {
-    height: hp(20),
+    height: hp(25),
     backgroundColor: '#7d5fff',
     justifyContent: 'flex-end',
   },
@@ -161,6 +157,7 @@ const styles = StyleSheet.create({
     borderRadius: hp(5),
     alignSelf: 'center',
     marginVertical: hp(1),
+    borderWidth: 1,
   },
 });
 

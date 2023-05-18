@@ -15,8 +15,6 @@ export default function Firestore() {
         .collection('comstas')
         .doc('YfkhILycbdYjKuFVdqYLfgtzuMo1')
         .get();
-
-      console.log(data._data);
       setMyData(data._data);
       //   setIsData(data._data.age);
     } catch (error) {

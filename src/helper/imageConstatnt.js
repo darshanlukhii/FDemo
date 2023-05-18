@@ -51,4 +51,10 @@ export const imageConstatnt = {
   pro: require('../assets/images/pro.png'),
   newMoon: require('../assets/images/new-moon.png'),
   finger: require('../assets/images/middle-finger.png'),
+  drawerSubscription: require('../assets/images/drawerSubscription.png'),
+  drawerProfile: require('../assets/images/drawerProfile.png'),
+  drawerHome: require('../assets/images/drawerHome.png'),
+  drawerEvent: require('../assets/images/drawerEvent.png'),
+  drawerBookmark: require('../assets/images/drawerBookmark.png'),
+  drawerLogout: require('../assets/images/drawerLogout.png'),
 };

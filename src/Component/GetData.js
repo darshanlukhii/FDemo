@@ -22,7 +22,6 @@ export const getDataBase = () => {
       .orderBy('PostTime', 'desc')
       .onSnapshot(querySnapshot => {
         querySnapshot.forEach(documentSnapshot => {
-          // console.log('=====', documentSnapshot.data());
           users.push({
             ...documentSnapshot.data(),
             key: documentSnapshot.id,
@@ -30,7 +29,6 @@ export const getDataBase = () => {
         });
         return users;
       });
-    console.log('---------', users);
   } catch (error) {
     console.log(error);
   }

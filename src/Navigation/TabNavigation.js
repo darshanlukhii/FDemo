@@ -32,7 +32,6 @@ const TabNavigation = () => {
         .doc(`${auth().currentUser.uid}`)
         .get()
         .then(res => {
-          // console.log('data._data ========>', res._data);
           setUserOldData(res._data);
         });
     } catch (error) {
@@ -90,7 +89,6 @@ const TabNavigation = () => {
           },
           tabBarBackground: () => (
             <LinearGradient
-              // colors={['#1BADD8', '#9999ff', '#ff4dff']}
               colors={['#33d6ff', '#9999ff', '#ff4dff']}
               style={{
                 borderRadius: hp(5),
@@ -120,6 +118,7 @@ const styles = StyleSheet.create({
     height: hp(2.5),
     width: hp(2.5),
     borderRadius: hp(2),
+    borderWidth: 1,
   },
   focusTabImageIconStyle: {
     height: hp(2.5),

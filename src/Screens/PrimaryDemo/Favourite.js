@@ -8,13 +8,12 @@ import moment from 'moment';
 import {TouchableOpacity} from 'react-native-gesture-handler';
 import {imageConstatnt} from '../../helper/imageConstatnt';
 import {useIsFocused} from '@react-navigation/native';
-import {getDataBase, getUserData} from '../../Component/GetData';
+import {getUserData} from '../../Component/GetData';
 
 const Favourite = () => {
   const [data, setData] = useState([]);
   const [userOldData, setUserOldData] = useState([]);
 
-  // console.log('data ::: ', data);
   const isFocused = useIsFocused();
 
   useEffect(() => {
@@ -43,11 +42,9 @@ const Favourite = () => {
               key: documentSnapshot.id,
             });
           });
-          // console.log('Post ---->', users);
           setData(() =>
             users.filter(snap => {
               return snap.PostBookMark.some(i => i == auth().currentUser.uid);
-              // console.log('----->', snap);
             }),
           );
         });

@@ -21,7 +21,6 @@ const Imageupload = () => {
         copyTo: 'cachesDirectory',
       });
 
-      console.log(response);
       setImageData(response);
     } catch (err) {
       console.log(err);
