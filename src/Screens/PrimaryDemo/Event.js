@@ -1,42 +1,42 @@
-import React, {Component, useEffect, useState} from 'react';
+import React, {useEffect, useState} from 'react';
 import {
   View,
   Text,
+  Alert,
+  Image,
   StyleSheet,
   TouchableOpacity,
-  Image,
-  Alert,
 } from 'react-native';
-import Header from '../../Component/Header';
-import {imageConstatnt} from '../../helper/imageConstatnt';
-import DocumentPicker from 'react-native-document-picker';
-import storage from '@react-native-firebase/storage';
-import {fontSize, hp, wp} from '../../helper/primaryConstant';
-import {TextInput} from 'react-native-gesture-handler';
-import LinearGradient from 'react-native-linear-gradient';
-import auth from '@react-native-firebase/auth';
-import {useIsFocused, useNavigation} from '@react-navigation/native';
-import {getUserData} from '../../Component/GetData';
+
 import firestore, {firebase} from '@react-native-firebase/firestore';
+import {useIsFocused, useNavigation} from '@react-navigation/native';
+import DocumentPicker from 'react-native-document-picker';
+import LinearGradient from 'react-native-linear-gradient';
+import {TextInput} from 'react-native-gesture-handler';
+import storage from '@react-native-firebase/storage';
+import auth from '@react-native-firebase/auth';
+
+import {fontSize, hp, wp} from '../../helper/primaryConstant';
 import {colorConstatnt} from '../../helper/colorConstatnt';
+import {imageConstatnt} from '../../helper/imageConstatnt';
+import {getUserData} from '../../Component/GetData';
+import Header from '../../Component/Header';
 
 const Event = () => {
-  const [imageData, setImageData] = useState('');
-  const [imgDownloadUrl, setImgDownloadUrl] = useState('');
-  const [caption, setCaption] = useState('');
-  const [title, setTitle] = useState('');
-  const [userOldData, setUserOldData] = useState([]);
   const {navigate} = useNavigation();
   const isFocused = useIsFocused();
+
+  const [imgDownloadUrl, setImgDownloadUrl] = useState('');
+  const [userOldData, setUserOldData] = useState([]);
+  const [imageData, setImageData] = useState('');
+  const [caption, setCaption] = useState('');
+  const [title, setTitle] = useState('');
 
   useEffect(() => {
     if (isFocused) {
       getData();
     }
   }, [isFocused]);
-
-  // console.log('Caption ====', caption.length);
-  // console.log('imageData ====', imageData.length);
 
   const getData = async () => {
     const get = await getUserData();

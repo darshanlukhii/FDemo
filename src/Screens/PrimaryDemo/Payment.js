@@ -1,11 +1,13 @@
-import React, {Component, useEffect, useState} from 'react';
+import React, {useEffect, useState} from 'react';
 import {View, Text, StyleSheet, Image, TouchableOpacity} from 'react-native';
-import Header from '../../Component/Header';
+
+import {useIsFocused} from '@react-navigation/native';
+import RazorpayCheckout from 'react-native-razorpay';
+
 import {fontSize, hp, wp} from '../../helper/primaryConstant';
 import {imageConstatnt} from '../../helper/imageConstatnt';
-import RazorpayCheckout from 'react-native-razorpay';
 import {getUserData} from '../../Component/GetData';
-import {useIsFocused} from '@react-navigation/native';
+import Header from '../../Component/Header';
 
 const Payment = () => {
   const isFocused = useIsFocused();

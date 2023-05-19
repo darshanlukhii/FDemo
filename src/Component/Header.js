@@ -6,12 +6,22 @@ import {
   Text,
   TouchableOpacity,
 } from 'react-native';
-import {imageConstatnt} from '../helper/imageConstatnt';
-import {fontSize, hp, wp} from '../helper/primaryConstant';
-import {useNavigation} from '@react-navigation/native';
-import {DrawerActions} from '@react-navigation/native';
 
-const Header = ({text, isTrue, onPress, source, isFalse, isNotification, sourceNotification, onPressNotification}) => {
+import {useNavigation} from '@react-navigation/native';
+
+import {fontSize, hp, wp} from '../helper/primaryConstant';
+import {imageConstatnt} from '../helper/imageConstatnt';
+
+const Header = ({
+  text,
+  isTrue,
+  onPress,
+  source,
+  isFalse,
+  isNotification,
+  sourceNotification,
+  onPressNotification,
+}) => {
   const navigation = useNavigation();
   return (
     <SafeAreaView style={styles.headerStyle}>
@@ -34,7 +44,10 @@ const Header = ({text, isTrue, onPress, source, isFalse, isNotification, sourceN
         <TouchableOpacity
           style={{position: 'absolute', right: wp(12), bottom: wp(0.8)}}
           onPress={onPressNotification}>
-          <Image source={sourceNotification} style={{height: hp(2.7), width: hp(2.7)}} />
+          <Image
+            source={sourceNotification}
+            style={{height: hp(2.7), width: hp(2.7)}}
+          />
         </TouchableOpacity>
       ) : null}
     </SafeAreaView>

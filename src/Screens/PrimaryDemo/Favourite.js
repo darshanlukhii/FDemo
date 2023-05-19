@@ -1,20 +1,30 @@
 import React, {useEffect, useState} from 'react';
-import {View, Text, StyleSheet, FlatList, Image} from 'react-native';
-import Header from '../../Component/Header';
-import firestore from '@react-native-firebase/firestore';
-import auth from '@react-native-firebase/auth';
-import {fontSize, hp, wp} from '../../helper/primaryConstant';
-import moment from 'moment';
+import {
+  View,
+  Text,
+  Image,
+  FlatList,
+  StyleSheet,
+  ActivityIndicator,
+} from 'react-native';
+
 import {TouchableOpacity} from 'react-native-gesture-handler';
-import {imageConstatnt} from '../../helper/imageConstatnt';
+import firestore from '@react-native-firebase/firestore';
 import {useIsFocused} from '@react-navigation/native';
+import auth from '@react-native-firebase/auth';
+import moment from 'moment';
+
+import {fontSize, hp, wp} from '../../helper/primaryConstant';
+import {imageConstatnt} from '../../helper/imageConstatnt';
 import {getUserData} from '../../Component/GetData';
+import Header from '../../Component/Header';
 
 const Favourite = () => {
-  const [data, setData] = useState([]);
-  const [userOldData, setUserOldData] = useState([]);
-
   const isFocused = useIsFocused();
+
+  const [userOldData, setUserOldData] = useState([]);
+  const [isLoading, setIsLoading] = useState(false);
+  const [data, setData] = useState([]);
 
   useEffect(() => {
     if (isFocused) {
@@ -29,6 +39,7 @@ const Favourite = () => {
   };
 
   const getData = () => {
+    setIsLoading(true);
     try {
       firestore()
         .collection('usersPost')
@@ -47,123 +58,107 @@ const Favourite = () => {
               return snap.PostBookMark.some(i => i == auth().currentUser.uid);
             }),
           );
+          setIsLoading(false);
         });
     } catch (error) {
       console.log(error);
     }
   };
 
+  const renderItem = ({item}) => {
+    const abc = userOldData?.Following?.some(c => {
+      return c === item?.PostId;
+    });
+    const current = item?.PostId?.localeCompare(auth().currentUser.uid);
+    const i = item?.PostBookMark.some(i => i == auth().currentUser.uid);
+    const like = item?.PostLike.some(aaa => aaa == auth().currentUser.uid);
+    return abc === true || current === 0 ? (
+      <View style={{padding: 3}}>
+        <View style={styles.mainStyle}>
+          <View style={styles.userImage}>
+            <Image
+              source={{uri: item?.PostUserImageUrI}}
+              style={styles.userIdImage}
+            />
+            <Text style={styles.userIdName}>{item?.PostName}</Text>
+          </View>
+          {item?.PostImg ? (
+            item?.PostType === 'image/jpeg' ? (
+              <View style={styles.imageViewStyle}>
+                <Image
+                  style={styles.dataImageStyle}
+                  source={{uri: item?.PostImg}}
+                />
+              </View>
+            ) : (
+              <View style={styles.imageViewStyle}>
+                <VideoPlayer
+                  video={{uri: item?.PostImg}}
+                  style={styles.dataImageStyle}
+                />
+              </View>
+            )
+          ) : null}
+          {!item?.Comment ? null : (
+            <Text style={styles.dataCaptionTextStyle}>
+              {JSON.parse(item?.Comment[0]).CommentText}
+            </Text>
+          )}
+          <Text style={styles.postedTextStyle}>
+            Posted on {moment(item?.PostTime.toDate()).fromNow()}
+          </Text>
+          <View style={styles.userLikeView}>
+            <Image
+              source={
+                like == false ? imageConstatnt.like : imageConstatnt.likeHeart
+              }
+              style={styles.likeImageStyle}
+            />
+            <Text style={styles.likeNumberTextStyle}>
+              {item?.PostLike.length}
+            </Text>
+            <Image
+              source={imageConstatnt.message}
+              style={styles.messageImageView}
+            />
+            <Text
+              style={{
+                ...styles.likeNumberTextStyle,
+                marginLeft: wp(2.93),
+              }}>
+              {item.Comment.length}
+            </Text>
+            <Image
+              source={
+                i == false
+                  ? imageConstatnt?.bookmark
+                  : imageConstatnt?.bookmarkTab
+              }
+              style={styles.messageImageView}
+            />
+            <TouchableOpacity style={styles.barViewStyle} onPress={() => {}}>
+              <Image source={imageConstatnt.bar} style={styles.barStyle} />
+            </TouchableOpacity>
+          </View>
+        </View>
+        <View style={{...styles.horiLine, marginTop: hp(0)}}></View>
+      </View>
+    ) : null;
+  };
+
   return (
     <View style={styles.container}>
       <Header text={'Favourite'} />
-      {data.length > 0 ? (
-        <FlatList
-          data={data}
-          bounces={false}
-          renderItem={({item}) => {
-            const abc = userOldData?.Following?.some(c => {
-              return c === item?.PostId;
-            });
-            const current = item?.PostId?.localeCompare(auth().currentUser.uid);
-            const i = item?.PostBookMark.some(i => i == auth().currentUser.uid);
-            const like = item?.PostLike.some(
-              aaa => aaa == auth().currentUser.uid,
-            );
-            return abc === true || current === 0 ? (
-              <View style={{padding: 3}}>
-                <View style={styles.mainStyle}>
-                  <View style={styles.userImage}>
-                    <Image
-                      source={{uri: item?.PostUserImageUrI}}
-                      style={styles.userIdImage}
-                    />
-                    <Text style={styles.userIdName}>{item?.PostName}</Text>
-                  </View>
-                  {item?.PostImg ? (
-                    item?.PostType === 'image/jpeg' ? (
-                      <View style={styles.imageViewStyle}>
-                        <Image
-                          style={styles.dataImageStyle}
-                          source={{uri: item?.PostImg}}
-                        />
-                      </View>
-                    ) : (
-                      <View style={styles.imageViewStyle}>
-                        <VideoPlayer
-                          video={{uri: item?.PostImg}}
-                          style={styles.dataImageStyle}
-                        />
-                      </View>
-                    )
-                  ) : null}
-                  {!item?.Comment ? null : (
-                    <Text style={styles.dataCaptionTextStyle}>
-                      {JSON.parse(item?.Comment[0]).CommentText}
-                    </Text>
-                  )}
-                  <Text style={styles.postedTextStyle}>
-                    Posted on {moment(item?.PostTime.toDate()).fromNow()}
-                  </Text>
-
-                  {/* <View style={styles.lineStyle} numberOfLines={1}></View> */}
-
-                  <View style={styles.userLikeView}>
-                    <TouchableOpacity onPress={() => {}}>
-                      <Image
-                        source={
-                          like == false
-                            ? imageConstatnt.like
-                            : imageConstatnt.likeHeart
-                        }
-                        style={styles.likeImageStyle}
-                      />
-                    </TouchableOpacity>
-                    <Text style={styles.likeNumberTextStyle}>
-                      {item?.PostLike.length}
-                    </Text>
-                    <TouchableOpacity onPress={() => {}}>
-                      <Image
-                        source={imageConstatnt.message}
-                        style={styles.messageImageView}
-                      />
-                    </TouchableOpacity>
-                    <Text
-                      style={{
-                        ...styles.likeNumberTextStyle,
-                        marginLeft: wp(2.93),
-                      }}>
-                      {/* 41 */}
-                    </Text>
-                    <TouchableOpacity onPress={() => {}}>
-                      <Image
-                        source={
-                          i == false
-                            ? imageConstatnt?.bookmark
-                            : imageConstatnt?.bookmarkTab
-                        }
-                        style={styles.messageImageView}
-                      />
-                    </TouchableOpacity>
-                    <TouchableOpacity
-                      style={styles.barViewStyle}
-                      onPress={() => {}}>
-                      <Image
-                        source={imageConstatnt.bar}
-                        style={styles.barStyle}
-                      />
-                    </TouchableOpacity>
-                  </View>
-                </View>
-                <View style={{...styles.horiLine, marginTop: hp(0)}}></View>
-              </View>
-            ) : null;
-          }}
-        />
+      {isLoading ? (
+        <View style={styles.loaderStyle}>
+          <ActivityIndicator size="large" color="#0000ff" />
+        </View>
+      ) : data.length > 1 ? (
+        <FlatList data={data} bounces={false} renderItem={renderItem} />
       ) : (
-        <Image
-          source={imageConstatnt.backGround}
-          style={styles.backGroundImageStyle}
-        />
+        <View style={styles.notDataStyle}>
+          <Image source={imageConstatnt.backGround} />
+        </View>
       )}
     </View>
   );
@@ -172,6 +167,7 @@ const Favourite = () => {
 const styles = StyleSheet.create({
   container: {
     flex: 1,
+    backgroundColor: 'white',
   },
   userImage: {
     flexDirection: 'row',
@@ -248,8 +244,16 @@ const styles = StyleSheet.create({
     backgroundColor: '#fff',
     height: hp(0.68),
   },
-  backGroundImageStyle: {
+  notDataStyle: {
     flex: 1,
+    alignItems: 'center',
+    justifyContent: 'center',
+    marginBottom: hp(8),
+  },
+  loaderStyle: {
+    flex: 1,
+    justifyContent: 'center',
+    alignItems: 'center',
   },
 });
 

@@ -1,5 +1,5 @@
-import React, {Component} from 'react';
-import {View, Text, StyleSheet, TextInput} from 'react-native';
+import React from 'react';
+import {StyleSheet, TextInput} from 'react-native';
 import {hp, wp} from '../helper/primaryConstant';
 
 const Field = ({

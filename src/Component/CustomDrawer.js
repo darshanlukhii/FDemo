@@ -1,15 +1,18 @@
 import React, {useEffect, useState} from 'react';
 import {View, Text, Image, StyleSheet, Alert} from 'react-native';
+
 import {DrawerContentScrollView, DrawerItem} from '@react-navigation/drawer';
-import {imageConstatnt} from '../helper/imageConstatnt';
 import {StackActions, useIsFocused} from '@react-navigation/native';
 import firestore from '@react-native-firebase/firestore';
 import auth from '@react-native-firebase/auth';
+
 import {fontSize, hp, wp} from '../helper/primaryConstant';
+import {imageConstatnt} from '../helper/imageConstatnt';
+import DrawerItems from './DrawerItems';
 
 const CustomDrawer = props => {
-  const [userOldData, setUserOldData] = useState([]);
   const isFocused = useIsFocused();
+  const [userOldData, setUserOldData] = useState([]);
 
   useEffect(() => {
     if (isFocused) {
@@ -35,81 +38,36 @@ const CustomDrawer = props => {
     <View style={{flex: 1}}>
       <View style={styles.primaryStyle}>
         <Image source={{uri: userOldData.uri}} style={styles.userIdImage} />
-        <Text
-          style={{
-            fontWeight: '600',
-            fontSize: fontSize(22),
-            color: 'white',
-            alignSelf: 'center',
-            marginBottom: hp(1),
-          }}>
-          {userOldData.name}
-        </Text>
+        <Text style={styles.userNameText}>{userOldData.name}</Text>
       </View>
       <View style={{flex: 1}}>
         <DrawerContentScrollView {...props}>
-          <DrawerItem
-            style={{
-              marginTop: hp(1.5),
-            }}
-            label="Home"
-            icon={() => (
-              <Image
-                style={styles.imageIconStyle}
-                source={imageConstatnt.drawerHome}
-              />
-            )}
-            onPress={() => {
-              props.navigation.navigate('PrimaryHome');
-            }}
+          {/* go to ==> Line no == 33  /Users/mac/Documents/DLDev/FDemo/node_modules/@react-navigation/drawer/src/views/DrawerContentScrollView.tsx */}
+          <DrawerItems
+            DrawerStyle={{marginTop: hp(1.5)}}
+            label={'Home'}
+            source={imageConstatnt.drawerHome}
+            onPress={() => props.navigation.navigate('PrimaryHome')}
           />
-          <DrawerItem
-            label="Favourite"
-            icon={() => (
-              <Image
-                style={styles.imageIconStyle}
-                source={imageConstatnt.drawerBookmark}
-              />
-            )}
-            onPress={() => {
-              props.navigation.navigate('Favourite');
-            }}
+          <DrawerItems
+            label={'Favourite'}
+            source={imageConstatnt.drawerBookmark}
+            onPress={() => props.navigation.navigate('Favourite')}
           />
-          <DrawerItem
-            label="Event"
-            icon={() => (
-              <Image
-                style={styles.imageIconStyle}
-                source={imageConstatnt.drawerEvent}
-              />
-            )}
-            onPress={() => {
-              props.navigation.navigate('Event');
-            }}
+          <DrawerItems
+            label={'Event'}
+            source={imageConstatnt.drawerEvent}
+            onPress={() => props.navigation.navigate('Event')}
           />
-          <DrawerItem
-            label="Subscription"
-            icon={() => (
-              <Image
-                style={styles.imageIconStyle}
-                source={imageConstatnt.drawerSubscription}
-              />
-            )}
-            onPress={() => {
-              props.navigation.navigate('Payment');
-            }}
+          <DrawerItems
+            label={'Subscription'}
+            source={imageConstatnt.drawerSubscription}
+            onPress={() => props.navigation.navigate('Payment')}
           />
-          <DrawerItem
-            label="Profile"
-            icon={() => (
-              <Image
-                style={styles.imageIconStyle}
-                source={imageConstatnt.drawerProfile}
-              />
-            )}
-            onPress={() => {
-              props.navigation.navigate('Profile');
-            }}
+          <DrawerItems
+            label={'Profile'}
+            source={imageConstatnt.drawerProfile}
+            onPress={() => props.navigation.navigate('Profile')}
           />
         </DrawerContentScrollView>
       </View>
@@ -156,8 +114,15 @@ const styles = StyleSheet.create({
     width: hp(10),
     borderRadius: hp(5),
     alignSelf: 'center',
-    marginVertical: hp(1),
+    marginVertical: hp(2),
     borderWidth: 1,
+  },
+  userNameText: {
+    fontWeight: '600',
+    fontSize: fontSize(22),
+    color: 'white',
+    alignSelf: 'center',
+    marginBottom: hp(1),
   },
 });
 

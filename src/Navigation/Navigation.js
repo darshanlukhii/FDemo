@@ -25,12 +25,14 @@ import Favourite from '../Screens/PrimaryDemo/Favourite';
 import Profile from '../Screens/PrimaryDemo/Profile';
 import ChatList from '../Screens/PrimaryDemo/ChatList';
 import analytics from '@react-native-firebase/analytics';
-import Ani from '../../src/Screens/Ani'
+import Ani from '../../src/Screens/Ani';
 import AnimatedButton from '../Screens/Animation/AnimatedButton';
 import AnimationWithLibrary from '../Screens/Animation/AnimationWithLibrary';
 import Progress from '../Screens/Animation/Progress';
 import Circle from '../Screens/Animation/Circle';
 import WebView_1 from '../Screens/WebView_1';
+import CircularBar from '../Screens/CircularProgressBar/CircularBar';
+import DataDisplay from '../Screens/DataDisplay';
 
 const Navigation = () => {
   const routeNameRef = useRef();
@@ -67,6 +69,9 @@ const Navigation = () => {
         <Stack.Screen name="Drawers" component={Drawers} />
         <Stack.Screen name="ChatList" component={ChatList} />
         <Stack.Screen name="WebView_1" component={WebView_1} />
+
+        {/* <Stack.Screen name="DataDisplay" component={DataDisplay} /> */}
+
         {/* <Stack.Screen name="Home" component={Home} />
         <Stack.Screen name="mobileverification" component={MoblieVerify} />
         <Stack.Screen name="RealTimeDataBase" component={RealTimeDataBase} />
@@ -79,11 +84,14 @@ const Navigation = () => {
         <Stack.Screen name="ApiCalling" component={ApiCalling} />
         <Stack.Screen name="DemoApi" component={DemoApi} />
         <Stack.Screen name="ApiApi" component={ApiApi} />
-      <Stack.Screen name="Firestore" component={Firestore} /> */}
-      {/* <Stack.Screen name="Circle" component={Circle} /> 
-      <Stack.Screen name="Ani" component={Ani} /> 
-      <Stack.Screen name="Progress" component={Progress} /> 
-      <Stack.Screen name="AnimationWithLibrary" component={AnimationWithLibrary} />  */}
+        <Stack.Screen name="Firestore" component={Firestore} /> */}
+
+        {/* <Stack.Screen name="Circle" component={Circle} />
+        <Stack.Screen name="Ani" component={Ani} />
+        <Stack.Screen name="Progress" component={Progress} />
+        <Stack.Screen name="AnimationWithLibrary" component={AnimationWithLibrary} /> */}
+
+        {/* <Stack.Screen name="CircularBar" component={CircularBar} /> */}
       </Stack.Navigator>
     </NavigationContainer>
   );

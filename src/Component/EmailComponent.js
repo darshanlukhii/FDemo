@@ -1,10 +1,9 @@
-//import liraries
-import React, {Component} from 'react';
+import React from 'react';
 import {View, Text, StyleSheet, Image, TouchableOpacity} from 'react-native';
+
 import {imageConstatnt} from '../helper/imageConstatnt';
 import {hp, wp} from '../helper/primaryConstant';
 
-// create a component
 const EmailComponent = ({text}) => {
   return (
     <TouchableOpacity>
@@ -21,7 +20,6 @@ const EmailComponent = ({text}) => {
   );
 };
 
-// define your styles
 const styles = StyleSheet.create({
   container: {
     height: hp(5.41),

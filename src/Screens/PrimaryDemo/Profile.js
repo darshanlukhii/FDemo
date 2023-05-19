@@ -2,56 +2,59 @@ import React, {useEffect, useState} from 'react';
 import {
   View,
   Text,
-  StyleSheet,
-  TouchableOpacity,
   Image,
   Alert,
-  TextInput,
-  SafeAreaView,
   FlatList,
+  TextInput,
+  StyleSheet,
+  SafeAreaView,
+  TouchableOpacity,
 } from 'react-native';
-import Header from '../../Component/Header';
-import firestore, {firebase} from '@react-native-firebase/firestore';
-import auth from '@react-native-firebase/auth';
-import {fontSize, hp, wp} from '../../helper/primaryConstant';
-import DocumentPicker from 'react-native-document-picker';
-import storage from '@react-native-firebase/storage';
-import {useIsFocused, useNavigation} from '@react-navigation/native';
-import {getUserData} from '../../Component/GetData';
-import ReactNativeModal from 'react-native-modal';
-import ProfileComponent from '../../Component/ProfileComponent';
-import {imageConstatnt} from '../../helper/imageConstatnt';
-import messaging from '@react-native-firebase/messaging';
-import remoteConfig from '@react-native-firebase/remote-config';
-import analytics from '@react-native-firebase/analytics';
-import crashlytics from '@react-native-firebase/crashlytics';
+
 import {
-  InterstitialAd,
-  RewardedAd,
-  RewardedAdEventType,
   TestIds,
+  RewardedAd,
+  InterstitialAd,
+  RewardedAdEventType,
 } from 'react-native-google-mobile-ads';
+import firestore, {firebase} from '@react-native-firebase/firestore';
+import {useIsFocused, useNavigation} from '@react-navigation/native';
+import remoteConfig from '@react-native-firebase/remote-config';
+import crashlytics from '@react-native-firebase/crashlytics';
+import DocumentPicker from 'react-native-document-picker';
+import analytics from '@react-native-firebase/analytics';
+import messaging from '@react-native-firebase/messaging';
+import storage from '@react-native-firebase/storage';
+import ReactNativeModal from 'react-native-modal';
+import auth from '@react-native-firebase/auth';
+
+import ProfileComponent from '../../Component/ProfileComponent';
+import {fontSize, hp, wp} from '../../helper/primaryConstant';
+import {imageConstatnt} from '../../helper/imageConstatnt';
+import {getUserData} from '../../Component/GetData';
+import Header from '../../Component/Header';
 
 const Profile = ({navigation}) => {
-  const [userOldData, setUserOldData] = useState([]);
-  const [data, setData] = useState([]);
-  const [data2, setData2] = useState([]);
-  const [followingData, setFollowingData] = useState([]);
-  const [followersData, setFollowersData] = useState([]);
-  const [requestData, setRequestData] = useState([]);
-  const [imageData, setImageData] = useState('');
-  const [imgDownloadUrl, setImgDownloadUrl] = useState('');
-  const [name, setName] = useState('');
-  const [email, setEmail] = useState('');
-  const [password, setPassword] = useState('');
-  const [isModalVisible, setModalVisible] = useState(false);
-  const [isVisible, setVisible] = useState(false);
+  const {navigate} = useNavigation();
+  const isFocused = useIsFocused();
+
   const [isFollowingVisible, setFollowingVisible] = useState(false);
   const [isFollowersVisible, setFollowersVisible] = useState(false);
-  const [isRequestVisible, setRequestVisible] = useState(false);
-  const isFocused = useIsFocused();
-  const {navigate} = useNavigation();
   const [buttonColorProfile, setButtonColorProfile] = useState();
+  const [isRequestVisible, setRequestVisible] = useState(false);
+  const [isModalVisible, setModalVisible] = useState(false);
+  const [imgDownloadUrl, setImgDownloadUrl] = useState('');
+  const [followingData, setFollowingData] = useState([]);
+  const [followersData, setFollowersData] = useState([]);
+  const [userOldData, setUserOldData] = useState([]);
+  const [requestData, setRequestData] = useState([]);
+  const [isVisible, setVisible] = useState(false);
+  const [imageData, setImageData] = useState('');
+  const [password, setPassword] = useState('');
+  const [email, setEmail] = useState('');
+  const [data2, setData2] = useState([]);
+  const [data, setData] = useState([]);
+  const [name, setName] = useState('');
 
   const ADS = TestIds.REWARDED;
 

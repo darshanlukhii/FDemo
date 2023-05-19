@@ -1,5 +1,6 @@
-import React, {Component} from 'react';
+import React from 'react';
 import {View, Text, StyleSheet, TouchableOpacity} from 'react-native';
+
 import {fontSize} from '../helper/primaryConstant';
 
 const ProfileComponent = ({number, title, isTrue, onPress}) => {

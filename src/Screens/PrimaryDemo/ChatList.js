@@ -1,20 +1,22 @@
-// This file has been fixed by ..... on branch new-28mar
-import React, {Component, useEffect, useState} from 'react';
+import React, {useEffect, useState} from 'react';
 import {
   View,
   Text,
+  FlatList,
   StyleSheet,
   SafeAreaView,
   TouchableOpacity,
-  FlatList,
 } from 'react-native';
+
 import firestore from '@react-native-firebase/firestore';
 import auth from '@react-native-firebase/auth';
-import {getUserData} from '../../Component/GetData';
+
 import {fontSize, hp, wp} from '../../helper/primaryConstant';
+import {getUserData} from '../../Component/GetData';
 
 const ChatList = ({navigation}) => {
   const [data, setData] = useState([]);
+
   useEffect(() => {
     getData();
   }, []);

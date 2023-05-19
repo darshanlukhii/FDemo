@@ -1,5 +1,5 @@
-import React, {Component} from 'react';
-import {View, Text, StyleSheet, TouchableOpacity} from 'react-native';
+import React from 'react';
+import {Text, TouchableOpacity} from 'react-native';
 
 const Btn = ({btnLabel, bgColor, textColor, onPress}) => {
   return (

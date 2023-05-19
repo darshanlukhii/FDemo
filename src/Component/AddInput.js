@@ -1,8 +1,6 @@
-//import liraries
 import React, {Component} from 'react';
 import {View, Text, StyleSheet} from 'react-native';
 
-// create a component
 const AddInput = () => {
   return (
     <View style={styles.container}>
@@ -11,7 +9,6 @@ const AddInput = () => {
   );
 };
 
-// define your styles
 const styles = StyleSheet.create({
   container: {
     flex: 1,
@@ -21,5 +18,4 @@ const styles = StyleSheet.create({
   },
 });
 
-//make this component available to the app
 export default AddInput;
