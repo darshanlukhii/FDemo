@@ -2,25 +2,26 @@ import React, {useEffect, useState} from 'react';
 import {
   View,
   Text,
-  StyleSheet,
-  FlatList,
   Image,
-  TouchableOpacity,
-  SafeAreaView,
+  FlatList,
   TextInput,
+  StyleSheet,
+  SafeAreaView,
+  TouchableOpacity,
   ActivityIndicator,
 } from 'react-native';
 
 import {
-  AdEventType,
+  TestIds,
   BannerAd,
+  AdEventType,
   BannerAdSize,
   InterstitialAd,
-  TestIds,
 } from 'react-native-google-mobile-ads';
 import {PERMISSIONS, requestMultiple} from 'react-native-permissions';
 import firestore, {firebase} from '@react-native-firebase/firestore';
 import {useIsFocused, useNavigation} from '@react-navigation/native';
+import analytics from '@react-native-firebase/analytics';
 import storage from '@react-native-firebase/storage';
 import ReactNativeModal from 'react-native-modal';
 import auth from '@react-native-firebase/auth';
@@ -232,8 +233,14 @@ const PrimaryHome = ({navigation}) => {
           </Text>
           <View style={styles.userLikeView}>
             <TouchableOpacity
-              onPress={() => {
+              onPress={async () => {
                 likeNumber(item);
+                await analytics().logEvent(`${item?.PostName}`, {
+                  id: {
+                    user: `${auth().currentUser.uid}`,
+                    description: `Post Like ${item?.PostName}`,
+                  },
+                });
               }}>
               <Image
                 source={
