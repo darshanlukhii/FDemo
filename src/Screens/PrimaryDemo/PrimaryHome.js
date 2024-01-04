@@ -30,7 +30,7 @@ import moment from 'moment';
 
 import {getDataBase, getUserData} from '../../Component/GetData';
 import {fontSize, hp, wp} from '../../helper/primaryConstant';
-import {imageConstatnt} from '../../helper/imageConstatnt';
+import {imageConstant} from '../../helper/imageConstant';
 import Header from '../../Component/Header';
 
 const PrimaryHome = ({navigation}) => {
@@ -206,24 +206,22 @@ const PrimaryHome = ({navigation}) => {
             />
             <Text style={styles.userIdName}>{item?.PostName}</Text>
           </View>
-          {item?.PostImg ? (
-            item?.PostType === 'image/jpeg' ? (
-              <View style={styles.imageViewStyle}>
-                <Image
-                  style={styles.dataImageStyle}
-                  source={{uri: item?.PostImg}}
-                />
-              </View>
-            ) : (
-              <View style={styles.imageViewStyle}>
-                <VideoPlayer
-                  video={{uri: item?.PostImg}}
-                  style={styles.dataImageStyle}
-                />
-              </View>
-            )
-          ) : null}
-          {!item?.Comment ? null : (
+          {item?.PostImg && item?.PostType === 'image/jpeg' ? (
+            <View style={styles.imageViewStyle}>
+              <Image
+                style={styles.dataImageStyle}
+                source={{uri: item?.PostImg}}
+              />
+            </View>
+          ) : (
+            <View style={styles.imageViewStyle}>
+              <VideoPlayer
+                video={{uri: item?.PostImg}}
+                style={styles.dataImageStyle}
+              />
+            </View>
+          )}
+          {item?.Comment && (
             <Text style={styles.dataCaptionTextStyle}>
               {JSON.parse(item?.Comment[0]).CommentText}
             </Text>
@@ -244,7 +242,7 @@ const PrimaryHome = ({navigation}) => {
               }}>
               <Image
                 source={
-                  like == false ? imageConstatnt.like : imageConstatnt.likeHeart
+                  like == false ? imageConstant.like : imageConstant.likeHeart
                 }
                 style={styles.likeImageStyle}
               />
@@ -258,7 +256,7 @@ const PrimaryHome = ({navigation}) => {
                 setModalVisible(!isModalVisible);
               }}>
               <Image
-                source={imageConstatnt.message}
+                source={imageConstant.message}
                 style={styles.messageImageView}
               />
             </TouchableOpacity>
@@ -276,8 +274,8 @@ const PrimaryHome = ({navigation}) => {
               <Image
                 source={
                   i == false
-                    ? imageConstatnt?.bookmark
-                    : imageConstatnt?.bookmarkTab
+                    ? imageConstant?.bookmark
+                    : imageConstant?.bookmarkTab
                 }
                 style={styles.messageImageView}
               />
@@ -287,7 +285,7 @@ const PrimaryHome = ({navigation}) => {
               onPress={() => {
                 deleteData(item.key);
               }}>
-              <Image source={imageConstatnt.bar} style={styles.barStyle} />
+              <Image source={imageConstant.bar} style={styles.barStyle} />
             </TouchableOpacity>
           </View>
         </View>
@@ -321,7 +319,7 @@ const PrimaryHome = ({navigation}) => {
       <Header
         text={'Home'}
         isTrue={true}
-        source={imageConstatnt.messages}
+        source={imageConstant.messages}
         onPress={() => {
           const uri = 'https://www.finology.in/';
           navigation.navigate('WebView_1', uri);
@@ -436,6 +434,7 @@ const styles = StyleSheet.create({
     borderRadius: hp(1.5),
     height: hp(24.5),
     width: wp(90),
+    overflow: 'hidden',
   },
   dataCaptionTextStyle: {
     marginTop: hp(1.97),

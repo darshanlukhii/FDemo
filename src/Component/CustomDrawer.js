@@ -7,7 +7,7 @@ import firestore from '@react-native-firebase/firestore';
 import auth from '@react-native-firebase/auth';
 
 import {fontSize, hp, wp} from '../helper/primaryConstant';
-import {imageConstatnt} from '../helper/imageConstatnt';
+import {imageConstant} from '../helper/imageConstant';
 import DrawerItems from './DrawerItems';
 
 const CustomDrawer = props => {
@@ -46,27 +46,27 @@ const CustomDrawer = props => {
           <DrawerItems
             DrawerStyle={{marginTop: hp(1.5)}}
             label={'Home'}
-            source={imageConstatnt.drawerHome}
+            source={imageConstant.drawerHome}
             onPress={() => props.navigation.navigate('PrimaryHome')}
           />
           <DrawerItems
             label={'Favourite'}
-            source={imageConstatnt.drawerBookmark}
+            source={imageConstant.drawerBookmark}
             onPress={() => props.navigation.navigate('Favourite')}
           />
           <DrawerItems
             label={'Event'}
-            source={imageConstatnt.drawerEvent}
+            source={imageConstant.drawerEvent}
             onPress={() => props.navigation.navigate('Event')}
           />
           <DrawerItems
             label={'Subscription'}
-            source={imageConstatnt.drawerSubscription}
+            source={imageConstant.drawerSubscription}
             onPress={() => props.navigation.navigate('Payment')}
           />
           <DrawerItems
             label={'Profile'}
-            source={imageConstatnt.drawerProfile}
+            source={imageConstant.drawerProfile}
             onPress={() => props.navigation.navigate('Profile')}
           />
         </DrawerContentScrollView>
@@ -80,7 +80,7 @@ const CustomDrawer = props => {
         icon={() => (
           <Image
             style={styles.imageIconStyle}
-            source={imageConstatnt.drawerLogout}
+            source={imageConstant.drawerLogout}
           />
         )}
         onPress={async () => {

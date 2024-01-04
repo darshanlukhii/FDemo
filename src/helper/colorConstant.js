@@ -1,4 +1,4 @@
-export const colorConstatnt = {
+export const colorConstant = {
   lightPurple: '#CC99FF',
   lightBlue: '#A9D1F7',
   lightGreen: '#B4F0A7',

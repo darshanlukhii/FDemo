@@ -11,7 +11,7 @@ import {
 } from 'react-native';
 import LinearGradient from 'react-native-linear-gradient';
 import EmailComponent from '../../Component/EmailComponent';
-import {imageConstatnt} from '../../helper/imageConstatnt';
+import {imageConstant} from '../../helper/imageConstant';
 import {hp, wp} from '../../helper/primaryConstant';
 
 const MyProject = ({navigation}) => {
@@ -20,13 +20,13 @@ const MyProject = ({navigation}) => {
       <StatusBar hidden={true} />
       <View style={styles.mainView}>
         <TouchableOpacity onPress={() => navigation.goBack()}>
-          <Image style={styles.imageDotStyle} source={imageConstatnt.back} />
+          <Image style={styles.imageDotStyle} source={imageConstant.back} />
         </TouchableOpacity>
         <Text style={styles.headerTextStyle}>HIIT cardio workout</Text>
       </View>
       <View style={styles.imageView}>
         <ImageBackground
-          source={imageConstatnt.fittnes}
+          source={imageConstant.fittnes}
           style={styles.imageView}>
           <LinearGradient colors={['rgba(0, 0, 0, 0)', 'rgba(0, 0, 0, 0.72)']}>
             <View style={styles.$60View}>
@@ -48,7 +48,7 @@ const MyProject = ({navigation}) => {
             <View style={styles.calendarView}>
               <View style={{flexDirection: 'row', marginTop: hp(0.93)}}>
                 <Image
-                  source={imageConstatnt.calendar}
+                  source={imageConstant.calendar}
                   style={{height: hp(2.04), width: wp(4), tintColor: '#FAFAFA'}}
                 />
                 <Text style={styles.janTextStlye}>Jan 6, 2022</Text>
@@ -74,7 +74,7 @@ const MyProject = ({navigation}) => {
             </View>
             <View style={styles.imglabView}>
               <View style={{flexDirection: 'row', marginTop: hp(0.86)}}>
-                <Image source={imageConstatnt.true} style={styles.truestyle} />
+                <Image source={imageConstant.true} style={styles.truestyle} />
                 <Text style={styles.comTextStyle}>Completed</Text>
               </View>
               <Text style={styles.dateStyle}>On Feb 6, 2022</Text>

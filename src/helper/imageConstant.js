@@ -1,4 +1,4 @@
-export const imageConstatnt = {
+export const imageConstant = {
   splash: require('../assets/images/pizza.png'),
   google: require('../assets/images/google.png'),
   fittnes: require('../assets/images/fittness.jpg'),

@@ -16,8 +16,8 @@ import {makeAPIRequest} from '../helper/GlobalFunctions';
 import {fontSize, hp, wp} from '../helper/primaryConstant';
 import LinearGradient from 'react-native-linear-gradient';
 import ReactNativeModal from 'react-native-modal';
-import {imageConstatnt} from '../helper/imageConstatnt';
-import {colorConstatnt} from '../helper/colorConstatnt';
+import {imageConstant} from '../helper/imageConstant';
+import {colorConstant} from '../helper/colorConstant';
 import HighlightText from '@sanar/react-native-highlight-text';
 
 const ApiCalling = ({navigation}) => {
@@ -198,12 +198,12 @@ const ApiCalling = ({navigation}) => {
           onPress={() => {
             setFilterModalVisible(!isFilterModalVisible);
           }}>
-          <Image source={imageConstatnt.filter} style={styles.filterStyle} />
+          <Image source={imageConstant.filter} style={styles.filterStyle} />
         </TouchableOpacity>
       </View>
       <Text style={styles.userListTextView}>User List</Text>
       <View style={styles.backGroundStyle}>
-        <Image source={imageConstatnt.search} style={styles.iconStyle} />
+        <Image source={imageConstant.search} style={styles.iconStyle} />
         <TextInput
           style={styles.inputStyle}
           autoCapitalize="none"
@@ -222,7 +222,7 @@ const ApiCalling = ({navigation}) => {
             onSearch('');
           }}>
           <Image
-            source={imageConstatnt.backClose}
+            source={imageConstant.backClose}
             style={{height: hp(1.3), width: hp(1.3)}}
           />
         </TouchableOpacity>
@@ -246,24 +246,24 @@ const ApiCalling = ({navigation}) => {
                 <LinearGradient
                   style={styles.linearGradientStyle}
                   colors={[
-                    colorConstatnt.lightRed,
-                    colorConstatnt.lightOrange,
-                    colorConstatnt.lightYellow,
-                    colorConstatnt.lightGreen,
-                    colorConstatnt.lightBlue,
-                    colorConstatnt.lightPurple,
+                    colorConstant.lightRed,
+                    colorConstant.lightOrange,
+                    colorConstant.lightYellow,
+                    colorConstant.lightGreen,
+                    colorConstant.lightBlue,
+                    colorConstant.lightPurple,
                   ]}
                   start={{x: 1.2, y: 0.5}}
                   end={{x: 0.1, y: 1.4}}>
                   <LinearGradient
                     style={styles.circleImageStyleView}
                     colors={[
-                      colorConstatnt.lightPurple,
-                      colorConstatnt.lightBlue,
-                      colorConstatnt.lightGreen,
-                      colorConstatnt.lightYellow,
-                      colorConstatnt.lightOrange,
-                      colorConstatnt.lightRed,
+                      colorConstant.lightPurple,
+                      colorConstant.lightBlue,
+                      colorConstant.lightGreen,
+                      colorConstant.lightYellow,
+                      colorConstant.lightOrange,
+                      colorConstant.lightRed,
                     ]}
                     start={{x: 0.1, y: 0.25}}
                     end={{x: 1, y: 0.95}}>
@@ -333,7 +333,7 @@ const ApiCalling = ({navigation}) => {
               setModalVisible(!isModalVisible);
             }}>
             <Image
-              source={imageConstatnt.backClose}
+              source={imageConstant.backClose}
               style={styles.crossStyleVew}
             />
           </TouchableOpacity>
@@ -344,12 +344,12 @@ const ApiCalling = ({navigation}) => {
               borderRadius: hp(2),
             }}
             colors={[
-              colorConstatnt.lightPurple,
-              colorConstatnt.lightBlue,
-              colorConstatnt.lightGreen,
-              colorConstatnt.lightYellow,
-              colorConstatnt.lightOrange,
-              colorConstatnt.lightRed,
+              colorConstant.lightPurple,
+              colorConstant.lightBlue,
+              colorConstant.lightGreen,
+              colorConstant.lightYellow,
+              colorConstant.lightOrange,
+              colorConstant.lightRed,
             ]}
             start={{x: 0.1, y: 0.25}}
             end={{x: 1, y: 0.95}}>
@@ -414,7 +414,7 @@ const ApiCalling = ({navigation}) => {
               setFilterModalVisible(!isFilterModalVisible);
             }}>
             <Image
-              source={imageConstatnt.backClose}
+              source={imageConstant.backClose}
               style={styles.crossStyleVew}
             />
           </TouchableOpacity>
@@ -550,7 +550,7 @@ const styles = StyleSheet.create({
     color: 'black',
   },
   backGroundStyle: {
-    backgroundColor: colorConstatnt.searchColor,
+    backgroundColor: colorConstant.searchColor,
     height: hp(5),
     borderRadius: hp(2),
     marginHorizontal: wp(4.5),

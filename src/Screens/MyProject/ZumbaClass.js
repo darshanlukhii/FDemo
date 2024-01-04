@@ -12,7 +12,7 @@ import {
   StatusBar,
 } from 'react-native';
 import LinearGradient from 'react-native-linear-gradient';
-import {imageConstatnt} from '../../helper/imageConstatnt';
+import {imageConstant} from '../../helper/imageConstant';
 import {fontSize, hp, wp} from '../../helper/primaryConstant';
 import DateTimePickerModal from 'react-native-modal-datetime-picker';
 
@@ -94,7 +94,7 @@ const ZumbaClass = ({navigation}) => {
         <StatusBar hidden={true} />
         <View style={styles.mainView}>
           <TouchableOpacity onPress={() => navigation.goBack()}>
-            <Image style={styles.imageDotStyle} source={imageConstatnt.back} />
+            <Image style={styles.imageDotStyle} source={imageConstant.back} />
           </TouchableOpacity>
           <Text style={styles.zumbaHeaderTextStyle}>Zumba Class</Text>
         </View>
@@ -135,7 +135,7 @@ const ZumbaClass = ({navigation}) => {
             onPress={() => {
               addData();
             }}>
-            <Image source={imageConstatnt.plus} style={styles.addImage} />
+            <Image source={imageConstant.plus} style={styles.addImage} />
             <Text style={styles.boxText}>Add exercise</Text>
           </TouchableOpacity>
           <TouchableOpacity
@@ -144,7 +144,7 @@ const ZumbaClass = ({navigation}) => {
               // addData();
               restData();
             }}>
-            <Image source={imageConstatnt.watch} style={styles.addImage} />
+            <Image source={imageConstant.watch} style={styles.addImage} />
             <Text style={styles.boxText}>Add rest</Text>
           </TouchableOpacity>
         </View>
@@ -158,7 +158,7 @@ const ZumbaClass = ({navigation}) => {
         {data == [] || data == '' ? (
           <View style={{justifyContent: 'center', alignItems: 'center'}}>
             <ImageBackground
-              source={imageConstatnt.fullWatch}
+              source={imageConstant.fullWatch}
               style={styles.fullWatchImage}
             />
             <Text style={styles.startaddTextStyle}>
@@ -175,7 +175,7 @@ const ZumbaClass = ({navigation}) => {
               return (
                 <View style={styles.logicView}>
                   <Image
-                    source={imageConstatnt.dot}
+                    source={imageConstant.dot}
                     style={styles.dotImageStyle}
                   />
                   <TextInput
@@ -220,8 +220,8 @@ const ZumbaClass = ({navigation}) => {
                       <Image
                         source={
                           item.imageVisible === false
-                            ? imageConstatnt.add
-                            : imageConstatnt.delete
+                            ? imageConstant.add
+                            : imageConstant.delete
                         }
                         // style={
                         //   item.imageVisible === false

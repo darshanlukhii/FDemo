@@ -14,7 +14,7 @@ import {hp, wp} from '../helper/primaryConstant';
 import auth from '@react-native-firebase/auth';
 import {KeyboardAwareScrollView} from 'react-native-keyboard-aware-scroll-view';
 import {StackActions} from '@react-navigation/native';
-import {imageConstatnt} from '../helper/imageConstatnt';
+import {imageConstant} from '../helper/imageConstant';
 import {GoogleSignin} from '@react-native-google-signin/google-signin';
 import analytics from '@react-native-firebase/analytics';
 
@@ -151,13 +151,13 @@ const Login = ({navigation}) => {
         <View style={styles.shortwayStyle}>
           <TouchableOpacity onPress={() => {}}>
             <Image
-              source={imageConstatnt.apple}
+              source={imageConstant.apple}
               style={{height: hp(5), width: hp(5)}}
             />
           </TouchableOpacity>
           <TouchableOpacity onPress={() => {}}>
             <Image
-              source={imageConstatnt.facebook}
+              source={imageConstant.facebook}
               style={{height: hp(5), width: hp(5)}}
             />
           </TouchableOpacity>
@@ -166,7 +166,7 @@ const Login = ({navigation}) => {
               googleLogin();
             }}>
             <Image
-              source={imageConstatnt.google}
+              source={imageConstant.google}
               style={{height: hp(5), width: hp(5)}}
             />
           </TouchableOpacity>

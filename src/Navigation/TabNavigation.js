@@ -6,7 +6,7 @@ import Favourite from '../Screens/PrimaryDemo/Favourite';
 import Event from '../Screens/PrimaryDemo/Event';
 import Profile from '../Screens/PrimaryDemo/Profile';
 import {hp, wp} from '../helper/primaryConstant';
-import {imageConstatnt} from '../helper/imageConstatnt';
+import {imageConstant} from '../helper/imageConstant';
 import CustomTabBarButton from '../Component/CustomTabBarButton';
 import firestore from '@react-native-firebase/firestore';
 import auth from '@react-native-firebase/auth';
@@ -47,20 +47,20 @@ const TabNavigation = () => {
             let iconName, iconStyle;
             if (route.name === 'PrimaryHome') {
               iconName = focused
-                ? imageConstatnt.HomeTab
-                : imageConstatnt.PrimaryHome;
+                ? imageConstant.HomeTab
+                : imageConstant.PrimaryHome;
               iconStyle = focused
                 ? styles.focusTabImageIconStyle
                 : styles.tabImageIconStyle;
             } else if (route.name === 'Favourite') {
               iconName = focused
-                ? imageConstatnt.bookmarkTab
-                : imageConstatnt.bookmark;
+                ? imageConstant.bookmarkTab
+                : imageConstant.bookmark;
               iconStyle = focused
                 ? styles.focusTabImageIconStyle
                 : styles.tabImageIconStyle;
             } else if (route.name === 'Event') {
-              iconName = focused ? imageConstatnt.PostTab : imageConstatnt.Post;
+              iconName = focused ? imageConstant.PostTab : imageConstant.Post;
               iconStyle = focused
                 ? styles.focusTabImageIconStyle
                 : styles.tabImageIconStyle;
@@ -69,8 +69,8 @@ const TabNavigation = () => {
               iconStyle = styles.profileImage;
             } else if (route.name == 'Payment') {
               iconName = focused
-                ? imageConstatnt.paymentTab
-                : imageConstatnt.payment;
+                ? imageConstant.paymentTab
+                : imageConstant.payment;
               iconStyle = focused
                 ? styles.focusPaymentTabImageIconStyle
                 : styles.paymentTabImageIconStyle;

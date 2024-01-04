@@ -179,7 +179,7 @@ export default Ani;
 // //   TouchableOpacity,
 // //   Image,
 // // } from 'react-native';
-// // import {imageConstatnt} from '../helper/imageConstatnt';
+// // import {imageConstant} from '../helper/imageConstant';
 // // import {hp} from '../helper/primaryConstant';
 
 // // const Ani = () => {
@@ -219,7 +219,7 @@ export default Ani;
 // //           },
 // //         ]}>
 // //         {/* <Image
-// //           source={imageConstatnt.finger}
+// //           source={imageConstant.finger}
 // //           style={[
 // //             styles.imageStyle,
 // //             {transform: [{scale: 3}]},
@@ -266,7 +266,7 @@ export default Ani;
 
 // // import React, {useState, useEffect} from 'react';
 // // import {View, Text, StyleSheet, Animated, Button, Image} from 'react-native';
-// // import {imageConstatnt} from '../helper/imageConstatnt';
+// // import {imageConstant} from '../helper/imageConstant';
 // // import {hp, wp} from '../helper/primaryConstant';
 
 // // const Ani = () => {
@@ -330,14 +330,14 @@ export default Ani;
 // //       <View style={{flexDirection: 'row'}}>
 // //         <Animated.View style={[styles.text, animatedStyles]}>
 // //           <Image
-// //             source={imageConstatnt.newMoon}
+// //             source={imageConstant.newMoon}
 // //             style={{height: hp(10), width: hp(10)}}
 // //           />
 // //           <Text>Hello, React Native Animation!</Text>
 // //         </Animated.View>
 // //         <Animated.View style={[styles.text, animatedStyles]}>
 // //           <Image
-// //             source={imageConstatnt.newMoon}
+// //             source={imageConstant.newMoon}
 // //             style={{height: hp(10), width: hp(10)}}
 // //           />
 // //           <Text>Hello, React Native Animation!</Text>
@@ -350,14 +350,14 @@ export default Ani;
 // //       <View style={{flexDirection: 'row'}}>
 // //         <Animated.View style={[styles.text, animatedStyles]}>
 // //           <Image
-// //             source={imageConstatnt.newMoon}
+// //             source={imageConstant.newMoon}
 // //             style={{height: hp(10), width: hp(10)}}
 // //           />
 // //           <Text>Hello, React Native Animation!</Text>
 // //         </Animated.View>
 // //         <Animated.View style={[styles.text, animatedStyles]}>
 // //           <Image
-// //             source={imageConstatnt.newMoon}
+// //             source={imageConstant.newMoon}
 // //             style={{height: hp(10), width: hp(10)}}
 // //           />
 // //           <Text>Hello, React Native Animation!</Text>

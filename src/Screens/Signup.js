@@ -14,7 +14,7 @@ import {hp, wp} from '../helper/primaryConstant';
 import auth from '@react-native-firebase/auth';
 import firestore from '@react-native-firebase/firestore';
 import {KeyboardAwareScrollView} from 'react-native-keyboard-aware-scroll-view';
-import {imageConstatnt} from '../helper/imageConstatnt';
+import {imageConstant} from '../helper/imageConstant';
 import {GoogleSignin} from '@react-native-google-signin/google-signin';
 import DocumentPicker from 'react-native-document-picker';
 import storage from '@react-native-firebase/storage';
@@ -184,7 +184,7 @@ const Signup = ({navigation}) => {
             />
           ) : (
             <Image
-              source={imageConstatnt.addimage}
+              source={imageConstant.addimage}
               style={{height: hp(9), width: hp(9), tintColor: '#737070'}}
             />
           )}
@@ -231,13 +231,13 @@ const Signup = ({navigation}) => {
         <View style={styles.shortwayStyle}>
           <TouchableOpacity onPress={() => {}}>
             <Image
-              source={imageConstatnt.apple}
+              source={imageConstant.apple}
               style={{height: hp(5), width: hp(5)}}
             />
           </TouchableOpacity>
           <TouchableOpacity onPress={() => {}}>
             <Image
-              source={imageConstatnt.facebook}
+              source={imageConstant.facebook}
               style={{height: hp(5), width: hp(5)}}
             />
           </TouchableOpacity>
@@ -246,7 +246,7 @@ const Signup = ({navigation}) => {
               googleLogin();
             }}>
             <Image
-              source={imageConstatnt.google}
+              source={imageConstant.google}
               style={{height: hp(5), width: hp(5)}}
             />
           </TouchableOpacity>

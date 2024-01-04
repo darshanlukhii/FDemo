@@ -19,7 +19,7 @@ import Video from 'react-native-video';
 import Icon from 'react-native-vector-icons/MaterialIcons';
 import VideoPlayer from 'react-native-video-player';
 import {fontSize, hp, wp} from '../helper/primaryConstant';
-import {imageConstatnt} from '../helper/imageConstatnt';
+import {imageConstant} from '../helper/imageConstant';
 import firestore from '@react-native-firebase/firestore';
 import storage from '@react-native-firebase/storage';
 import {useIsFocused} from '@react-navigation/native';
@@ -159,14 +159,14 @@ const FirebaseDemo = ({navigation}) => {
       <StatusBar hidden={true} />
       <View style={styles.mainView}>
         <TouchableOpacity onPress={() => navigation.goBack()}>
-          <Image style={styles.imageDotStyle} source={imageConstatnt.back} />
+          <Image style={styles.imageDotStyle} source={imageConstant.back} />
         </TouchableOpacity>
         <Text style={styles.headerTextStyle}>Arnab’s Gym Feed</Text>
       </View>
       <View>
         <View style={styles.primaryTextInputModal}>
           <View style={styles.idImageStyle}>
-            <Image source={imageConstatnt.idPic} />
+            <Image source={imageConstant.idPic} />
           </View>
           <TouchableOpacity
             style={styles.inputModalStyle}
@@ -176,11 +176,11 @@ const FirebaseDemo = ({navigation}) => {
         </View>
         <View style={styles.buttonsMainView}>
           <TouchableOpacity style={styles.addImageView} onPress={() => {}}>
-            <Image source={imageConstatnt.image} style={styles.addImageStyle} />
+            <Image source={imageConstant.image} style={styles.addImageStyle} />
             <Text style={styles.addImageTextStyle}>Add Image</Text>
           </TouchableOpacity>
           <TouchableOpacity style={styles.addImageView} onPress={() => {}}>
-            <Image source={imageConstatnt.video} style={styles.addImageStyle} />
+            <Image source={imageConstant.video} style={styles.addImageStyle} />
             <Text style={styles.addImageTextStyle}>Add Video</Text>
           </TouchableOpacity>
         </View>
@@ -270,7 +270,7 @@ const FirebaseDemo = ({navigation}) => {
                           setD(!d);
                         }}>
                         <Image
-                          source={imageConstatnt.like}
+                          source={imageConstant.like}
                           style={styles.likeImageStyle}
                         />
                       </TouchableOpacity>
@@ -284,7 +284,7 @@ const FirebaseDemo = ({navigation}) => {
                           );
                         }}>
                         <Image
-                          source={imageConstatnt.likeHeart}
+                          source={imageConstant.likeHeart}
                           style={styles.likeImageStyle}
                         />
                       </TouchableOpacity>
@@ -294,7 +294,7 @@ const FirebaseDemo = ({navigation}) => {
                     </Text>
                     <TouchableOpacity>
                       <Image
-                        source={imageConstatnt.message}
+                        source={imageConstant.message}
                         style={styles.messageImageView}
                       />
                     </TouchableOpacity>
@@ -312,7 +312,7 @@ const FirebaseDemo = ({navigation}) => {
                         setD(!d);
                       }}>
                       <Image
-                        source={imageConstatnt.bar}
+                        source={imageConstant.bar}
                         style={styles.barStyle}
                       />
                     </TouchableOpacity>
@@ -336,7 +336,7 @@ const FirebaseDemo = ({navigation}) => {
           <View style={styles.cancleButtonView}>
             <TouchableOpacity onPress={toggleModal}>
               <Image
-                source={imageConstatnt.cancle}
+                source={imageConstant.cancle}
                 style={styles.cancleButton}
               />
             </TouchableOpacity>
@@ -362,7 +362,7 @@ const FirebaseDemo = ({navigation}) => {
                   setD(!d);
                 }}>
                 <Image
-                  source={imageConstatnt.image}
+                  source={imageConstant.image}
                   style={styles.addImageStyle}
                 />
                 <Text style={styles.addImageTextStyle}>Add Image</Text>
@@ -374,7 +374,7 @@ const FirebaseDemo = ({navigation}) => {
                   setD(!d);
                 }}>
                 <Image
-                  source={imageConstatnt.video}
+                  source={imageConstant.video}
                   style={styles.addImageStyle}
                 />
                 <Text style={styles.addImageTextStyle}>Add Video</Text>
@@ -395,7 +395,7 @@ const FirebaseDemo = ({navigation}) => {
                   onPress={() => {
                     setImageVideoData('');
                   }}>
-                  <Image source={imageConstatnt.cross} />
+                  <Image source={imageConstant.cross} />
                 </TouchableOpacity>
                 {imageVideoData === '' ? null : (
                   <View style={styles.smallImageView}>

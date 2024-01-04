@@ -1,7 +1,7 @@
 import React, {useEffect, useState} from 'react';
 import {View, Text, StyleSheet, Image} from 'react-native';
 import auth from '@react-native-firebase/auth';
-import {imageConstatnt} from '../helper/imageConstatnt';
+import {imageConstant} from '../helper/imageConstant';
 import {hp} from '../helper/primaryConstant';
 import {StackActions} from '@react-navigation/native';
 
@@ -25,7 +25,7 @@ const Splash = ({navigation}) => {
   return (
     <View style={styles.container}>
       <Image
-        source={imageConstatnt.splash}
+        source={imageConstant.splash}
         style={{height: hp(20), width: hp(20)}}
       />
     </View>

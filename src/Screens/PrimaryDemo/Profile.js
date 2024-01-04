@@ -30,7 +30,7 @@ import auth from '@react-native-firebase/auth';
 
 import ProfileComponent from '../../Component/ProfileComponent';
 import {fontSize, hp, wp} from '../../helper/primaryConstant';
-import {imageConstatnt} from '../../helper/imageConstatnt';
+import {imageConstant} from '../../helper/imageConstant';
 import {getUserData} from '../../Component/GetData';
 import Header from '../../Component/Header';
 
@@ -108,6 +108,7 @@ const Profile = ({navigation}) => {
         .collection('users')
         .onSnapshot(querySnapshot => {
           let user = [];
+
           querySnapshot.forEach(documentSnapshot => {
             user.push({
               ...documentSnapshot.data(),
@@ -505,8 +506,8 @@ const Profile = ({navigation}) => {
         text={'Profile'}
         isTrue={true}
         isNotification={true}
-        source={imageConstatnt.userData}
-        sourceNotification={imageConstatnt.notification}
+        source={imageConstant.userData}
+        sourceNotification={imageConstant.notification}
         onPress={() => setVisible(!isVisible)}
         onPressNotification={() => {
           setRequestVisible(!isRequestVisible);
@@ -914,7 +915,7 @@ const Profile = ({navigation}) => {
                       style={styles.description}
                       numberOfLines={1}
                       ellipsizeMode="tail">
-                      following {item.name}{' '}
+                      following {item.name}
                     </Text>
                   </View>
                   <TouchableOpacity
@@ -956,6 +957,7 @@ const styles = StyleSheet.create({
     borderRadius: hp(5),
     borderWidth: 0.5,
     alignSelf: 'center',
+    overflow: 'hidden',
   },
   userNameView: {
     borderWidth: 0.5,
@@ -1066,7 +1068,7 @@ const styles = StyleSheet.create({
   },
   description: {
     marginTop: wp(2),
-    marginLeft: wp(2),
+    marginLeft: wp(3),
     paddingRight: wp(2),
   },
   followButton: {

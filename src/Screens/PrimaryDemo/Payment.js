@@ -5,7 +5,7 @@ import {useIsFocused} from '@react-navigation/native';
 import RazorpayCheckout from 'react-native-razorpay';
 
 import {fontSize, hp, wp} from '../../helper/primaryConstant';
-import {imageConstatnt} from '../../helper/imageConstatnt';
+import {imageConstant} from '../../helper/imageConstant';
 import {getUserData} from '../../Component/GetData';
 import Header from '../../Component/Header';
 
@@ -29,7 +29,7 @@ const Payment = () => {
     action == 'starter' ? (amount = '492400') : (amount = '984800');
     var options = {
       description: 'Credits towards consultation',
-      image: imageConstatnt.splash,
+      image: imageConstant.splash,
       currency: 'INR',
       key: 'rzp_test_DRufNF2XgsAf32',
       amount: amount,
@@ -64,12 +64,12 @@ const Payment = () => {
           <View style={{flex: 1}}>
             <Image
               style={styles.boxImageView}
-              source={imageConstatnt.backGroundGirl}
+              source={imageConstant.backGroundGirl}
             />
           </View>
         </View>
         <View style={styles.planOneView}>
-          <Image style={styles.staterView} source={imageConstatnt.starter} />
+          <Image style={styles.staterView} source={imageConstant.starter} />
           <Text style={styles.starterText}>STARTER</Text>
           <View style={styles.firstPlanView}>
             <Text style={styles.twoMonth}>$</Text>
@@ -85,7 +85,7 @@ const Payment = () => {
           </TouchableOpacity>
         </View>
         <View style={styles.planOneView}>
-          <Image style={styles.staterView} source={imageConstatnt.pro} />
+          <Image style={styles.staterView} source={imageConstant.pro} />
           <Text style={styles.starterText}>PRO</Text>
           <View style={styles.firstPlanView}>
             <Text style={styles.twoMonth}>$</Text>

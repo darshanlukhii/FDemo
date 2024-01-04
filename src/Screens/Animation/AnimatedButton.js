@@ -1,6 +1,6 @@
 import React, { useState } from 'react';
 import { View, StyleSheet, Animated, TouchableOpacity, Image, ImageBackground } from 'react-native';
-import { imageConstatnt } from '../../helper/imageConstatnt';
+import { imageConstant } from '../../helper/imageConstant';
 
 const AnimatedButton = () => {
   const [animation] = useState(new Animated.Value(0));
@@ -80,15 +80,15 @@ const AnimatedButton = () => {
   return (
     <View style={styles.container}>
       <TouchableOpacity style={[styles.button]} onPress={handlePress}>
-        <ImageBackground source={imageConstatnt.Favourite} style={[styles.view]}>
+        <ImageBackground source={imageConstant.Favourite} style={[styles.view]}>
         <Animated.View style={[styles.firstButton, firstButtonStyle,]}>
-            <Image source={imageConstatnt.Favourite} style={{height:40, width:40}}/>
+            <Image source={imageConstant.Favourite} style={{height:40, width:40}}/>
         </Animated.View>
         <Animated.View style={[styles.secondButton, secondButtonStyle]} >
-            <Image source={imageConstatnt.Favourite} style={{height:40, width:40}}/>
+            <Image source={imageConstant.Favourite} style={{height:40, width:40}}/>
         </Animated.View>
         <Animated.View style={[styles.thirdButton, thirdButtonStyle]} >
-            <Image source={imageConstatnt.Favourite} style={{height:40, width:40}}/>
+            <Image source={imageConstant.Favourite} style={{height:40, width:40}}/>
         </Animated.View>
         {/* <Animated.View style={[styles.button, containerStyle]}>
           <View style={styles.icon} />

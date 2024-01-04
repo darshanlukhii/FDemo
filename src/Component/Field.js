@@ -18,6 +18,7 @@ const Field = ({
       secureTextEntry={secureTextEntry}
       keyboardType={keyboardType}
       autoCorrect={autoCorrect}
+      autoCapitalize='none'
     />
   );
 };

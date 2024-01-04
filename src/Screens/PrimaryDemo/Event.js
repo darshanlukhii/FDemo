@@ -17,8 +17,8 @@ import storage from '@react-native-firebase/storage';
 import auth from '@react-native-firebase/auth';
 
 import {fontSize, hp, wp} from '../../helper/primaryConstant';
-import {colorConstatnt} from '../../helper/colorConstatnt';
-import {imageConstatnt} from '../../helper/imageConstatnt';
+import {colorConstant} from '../../helper/colorConstant';
+import {imageConstant} from '../../helper/imageConstant';
 import {getUserData} from '../../Component/GetData';
 import Header from '../../Component/Header';
 
@@ -148,7 +148,7 @@ const Event = () => {
             onPress={() => {
               pickImage('Images');
             }}>
-            <Image source={imageConstatnt.image} style={styles.addImageStyle} />
+            <Image source={imageConstant.image} style={styles.addImageStyle} />
             <Text style={styles.addImageTextStyle}>Add Image</Text>
           </TouchableOpacity>
           <TouchableOpacity
@@ -156,7 +156,7 @@ const Event = () => {
             onPress={() => {
               pickImage('Video');
             }}>
-            <Image source={imageConstatnt.video} style={styles.addImageStyle} />
+            <Image source={imageConstant.video} style={styles.addImageStyle} />
             <Text style={styles.addImageTextStyle}>Add Video</Text>
           </TouchableOpacity>
         </View>
@@ -177,7 +177,7 @@ const Event = () => {
               onPress={() => {
                 setImageData('');
               }}>
-              <Image source={imageConstatnt.cross} />
+              <Image source={imageConstant.cross} />
             </TouchableOpacity>
             {imageData === '' ? null : (
               <View style={styles.smallImageView}>
@@ -197,10 +197,10 @@ const Event = () => {
           }}>
           <LinearGradient
             colors={[
-              colorConstatnt.lightRed,
-              colorConstatnt.lightPurple,
-              colorConstatnt.lightBlue,
-              colorConstatnt.lightGreen,
+              colorConstant.lightRed,
+              colorConstant.lightPurple,
+              colorConstant.lightBlue,
+              colorConstant.lightGreen,
             ]}
             start={{x: 1.2, y: 0.5}}
             end={{x: 0.1, y: 1.4}}

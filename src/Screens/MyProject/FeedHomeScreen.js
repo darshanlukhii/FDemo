@@ -11,7 +11,7 @@ import {
   ScrollView,
   StatusBar,
 } from 'react-native';
-import {imageConstatnt} from '../../helper/imageConstatnt';
+import {imageConstant} from '../../helper/imageConstant';
 import {fontSize, hp, wp} from '../../helper/primaryConstant';
 import ReactNativeModal from 'react-native-modal';
 import LinearGradient from 'react-native-linear-gradient';
@@ -58,7 +58,7 @@ const FeedHomeScreen = () => {
         <Text style={styles.arnabTextStyle}>Arnab’s Gym Feed</Text>
         <View style={styles.primaryTextInputModal}>
           <View style={styles.idImageStyle}>
-            <Image source={imageConstatnt.idPic} />
+            <Image source={imageConstant.idPic} />
           </View>
           <TouchableOpacity
             style={styles.inputModalStyle}
@@ -68,11 +68,11 @@ const FeedHomeScreen = () => {
         </View>
         <View style={styles.buttonsMainView}>
           <TouchableOpacity style={styles.addImageView} onPress={() => {}}>
-            <Image source={imageConstatnt.image} style={styles.addImageStyle} />
+            <Image source={imageConstant.image} style={styles.addImageStyle} />
             <Text style={styles.addImageTextStyle}>Add Image</Text>
           </TouchableOpacity>
           <TouchableOpacity style={styles.addImageView} onPress={() => {}}>
-            <Image source={imageConstatnt.video} style={styles.addImageStyle} />
+            <Image source={imageConstant.video} style={styles.addImageStyle} />
             <Text style={styles.addImageTextStyle}>Add Video</Text>
           </TouchableOpacity>
         </View>
@@ -150,14 +150,14 @@ const FeedHomeScreen = () => {
                       dispatch({type: 'EDIT_USER_LIKE', payload: item.id});
                     }}>
                     <Image
-                      source={imageConstatnt.like}
+                      source={imageConstant.like}
                       style={styles.likeImageStyle}
                     />
                   </TouchableOpacity>
                   <Text style={styles.likeNumberTextStyle}>{item.like}</Text>
                   <TouchableOpacity>
                     <Image
-                      source={imageConstatnt.message}
+                      source={imageConstant.message}
                       style={styles.messageImageView}
                     />
                   </TouchableOpacity>
@@ -173,7 +173,7 @@ const FeedHomeScreen = () => {
                       dispatch({type: 'DELETE_DATA', payload: item.id});
                     }}>
                     <Image
-                      source={imageConstatnt.bar}
+                      source={imageConstant.bar}
                       style={styles.barStyle}
                     />
                   </TouchableOpacity>
@@ -197,7 +197,7 @@ const FeedHomeScreen = () => {
           <View style={styles.cancleButtonView}>
             <TouchableOpacity onPress={toggleModal}>
               <Image
-                source={imageConstatnt.cancle}
+                source={imageConstant.cancle}
                 style={styles.cancleButton}
               />
             </TouchableOpacity>
@@ -222,7 +222,7 @@ const FeedHomeScreen = () => {
                   addDocument('Images');
                 }}>
                 <Image
-                  source={imageConstatnt.image}
+                  source={imageConstant.image}
                   style={styles.addImageStyle}
                 />
                 <Text style={styles.addImageTextStyle}>Add Image</Text>
@@ -233,7 +233,7 @@ const FeedHomeScreen = () => {
                   addDocument('Video');
                 }}>
                 <Image
-                  source={imageConstatnt.video}
+                  source={imageConstant.video}
                   style={styles.addImageStyle}
                 />
                 <Text style={styles.addImageTextStyle}>Add Video</Text>
@@ -254,7 +254,7 @@ const FeedHomeScreen = () => {
                   onPress={() => {
                     setImagevideoData('');
                   }}>
-                  <Image source={imageConstatnt.cross} />
+                  <Image source={imageConstant.cross} />
                 </TouchableOpacity>
                 {imagevideoData === '' ? null : (
                   <View style={styles.smallImageView}>

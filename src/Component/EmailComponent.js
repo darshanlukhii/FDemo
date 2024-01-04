@@ -1,7 +1,7 @@
 import React from 'react';
 import {View, Text, StyleSheet, Image, TouchableOpacity} from 'react-native';
 
-import {imageConstatnt} from '../helper/imageConstatnt';
+import {imageConstant} from '../helper/imageConstant';
 import {hp, wp} from '../helper/primaryConstant';
 
 const EmailComponent = ({text}) => {
@@ -9,11 +9,11 @@ const EmailComponent = ({text}) => {
     <TouchableOpacity>
       <View style={styles.container}>
         <View style={{flexDirection: 'row'}}>
-          <Image source={imageConstatnt.dot} style={styles.dotImage} />
+          <Image source={imageConstant.dot} style={styles.dotImage} />
           <Text style={styles.textStyle}>{text}</Text>
         </View>
         <View style={styles.mailView}>
-          <Image style={styles.mailStyle} source={imageConstatnt.email} />
+          <Image style={styles.mailStyle} source={imageConstant.email} />
         </View>
       </View>
     </TouchableOpacity>

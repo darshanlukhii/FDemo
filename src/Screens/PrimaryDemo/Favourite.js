@@ -15,7 +15,7 @@ import auth from '@react-native-firebase/auth';
 import moment from 'moment';
 
 import {fontSize, hp, wp} from '../../helper/primaryConstant';
-import {imageConstatnt} from '../../helper/imageConstatnt';
+import {imageConstant} from '../../helper/imageConstant';
 import {getUserData} from '../../Component/GetData';
 import Header from '../../Component/Header';
 
@@ -110,7 +110,7 @@ const Favourite = () => {
           <View style={styles.userLikeView}>
             <Image
               source={
-                like == false ? imageConstatnt.like : imageConstatnt.likeHeart
+                like == false ? imageConstant.like : imageConstant.likeHeart
               }
               style={styles.likeImageStyle}
             />
@@ -118,7 +118,7 @@ const Favourite = () => {
               {item?.PostLike.length}
             </Text>
             <Image
-              source={imageConstatnt.message}
+              source={imageConstant.message}
               style={styles.messageImageView}
             />
             <Text
@@ -131,13 +131,13 @@ const Favourite = () => {
             <Image
               source={
                 i == false
-                  ? imageConstatnt?.bookmark
-                  : imageConstatnt?.bookmarkTab
+                  ? imageConstant?.bookmark
+                  : imageConstant?.bookmarkTab
               }
               style={styles.messageImageView}
             />
             <TouchableOpacity style={styles.barViewStyle} onPress={() => {}}>
-              <Image source={imageConstatnt.bar} style={styles.barStyle} />
+              <Image source={imageConstant.bar} style={styles.barStyle} />
             </TouchableOpacity>
           </View>
         </View>
@@ -157,7 +157,7 @@ const Favourite = () => {
         <FlatList data={data} bounces={false} renderItem={renderItem} />
       ) : (
         <View style={styles.notDataStyle}>
-          <Image source={imageConstatnt.backGround} />
+          <Image source={imageConstant.backGround} />
         </View>
       )}
     </View>

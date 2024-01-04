@@ -10,7 +10,7 @@ import {
 import {useNavigation} from '@react-navigation/native';
 
 import {fontSize, hp, wp} from '../helper/primaryConstant';
-import {imageConstatnt} from '../helper/imageConstatnt';
+import {imageConstant} from '../helper/imageConstant';
 
 const Header = ({
   text,
@@ -31,7 +31,7 @@ const Header = ({
             navigation.openDrawer();
           }}
           style={styles.drawerStyle}>
-          <Image source={imageConstatnt.menu} style={styles.headerIcon} />
+          <Image source={imageConstant.menu} style={styles.headerIcon} />
         </TouchableOpacity>
       )}
       <Text style={styles.headerText}>{text}</Text>
@@ -59,7 +59,6 @@ const styles = StyleSheet.create({
     flexDirection: 'row',
     justifyContent: 'center',
     backgroundColor: 'white',
-    height: 80,
     width: '100%',
   },
   headerIcon: {
